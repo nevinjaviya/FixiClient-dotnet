@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Decos.Fixi.Client</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Ruben Verdoes</authors>
+    <owners>r.verdoes</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fixi API client library for .NET</description>
+    <releaseNotes>Initial pre-release; provides a usable HttpClient and some placeholder API interfaces.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Decos JOIN Fixi Client</tags>
+  </metadata>
+</package>
