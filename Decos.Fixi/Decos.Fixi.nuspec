@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fixi API client library for .NET</description>
-    <releaseNotes>Added organizations API.</releaseNotes>
+    <releaseNotes>Added missing IFixiClient interface members.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Decos JOIN Fixi Client</tags>
   </metadata>
