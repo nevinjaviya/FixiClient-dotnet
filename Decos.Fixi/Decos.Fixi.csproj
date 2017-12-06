@@ -53,23 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attachment.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="Models\BooleanDefault.cs" />
+    <Compile Include="Models\Attachment.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="FixiClient.cs" />
     <Compile Include="HmacAuthenticationMessageHandler.cs" />
     <Compile Include="IAttachmentsApi.cs" />
     <Compile Include="IFixiClient.cs" />
     <Compile Include="IIssuesApi.cs" />
+    <Compile Include="IOrganizationsApi.cs" />
     <Compile Include="IRegionsApi.cs" />
-    <Compile Include="Issue.cs" />
-    <Compile Include="IssueChanges.cs" />
+    <Compile Include="Models\Issue.cs" />
+    <Compile Include="Models\IssueChanges.cs" />
     <Compile Include="ITeamsApi.cs" />
-    <Compile Include="PagedResult.cs" />
-    <Compile Include="Point.cs" />
-    <Compile Include="Polygon.cs" />
+    <Compile Include="Models\Organization.cs" />
+    <Compile Include="Models\PagedResult.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\Polygon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

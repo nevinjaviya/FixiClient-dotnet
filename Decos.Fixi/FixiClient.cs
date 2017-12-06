@@ -10,13 +10,13 @@ namespace Decos.Fixi
   /// </summary>
   public class FixiClient : IFixiClient, IDisposable
   {
-    private static readonly Refit.RefitSettings refitSettings = new Refit.RefitSettings { UrlParameterFormatter = new InvariantUrlParameterFormatter() };
     private readonly string apiSecret;
     private readonly Lazy<IAttachmentsApi> attachmentsApi;
     private readonly Lazy<HttpClient> httpClient;
     private readonly Lazy<IRegionsApi> regionsApi;
     private readonly Lazy<ITeamsApi> teamsApi;
     private readonly Lazy<IIssuesApi> issuesApi;
+    private readonly Lazy<IOrganizationsApi> organizationsApi;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FixiClient"/> class with the
@@ -36,6 +36,7 @@ namespace Decos.Fixi
       teamsApi = new Lazy<ITeamsApi>(CreateApiInstance<ITeamsApi>);
       regionsApi = new Lazy<IRegionsApi>(CreateApiInstance<IRegionsApi>);
       issuesApi = new Lazy<IIssuesApi>(CreateApiInstance<IIssuesApi>);
+      organizationsApi = new Lazy<IOrganizationsApi>(CreateApiInstance<IOrganizationsApi>);
     }
 
     /// <summary>
@@ -69,15 +70,49 @@ namespace Decos.Fixi
     public IIssuesApi Issues => issuesApi.Value;
 
     /// <summary>
+    /// Gets a reference to the organizations API.
+    /// </summary>
+    public IOrganizationsApi Organizations => organizationsApi.Value;
+
+    /// <summary>
     /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
     /// </summary>
     public HttpClient HttpClient => httpClient.Value;
 
+    private Refit.RefitSettings RefitSettings
+    {
+      get
+      {
+        var settings = new Refit.RefitSettings
+        {
+          JsonSerializerSettings = new Newtonsoft.Json.JsonSerializerSettings
+          {
+            DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore,
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+          },
+          UrlParameterFormatter = new InvariantUrlParameterFormatter()
+        };
+        settings.JsonSerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { CamelCaseText = true });
+        return settings;
+      }
+    }
+
+    /// <summary>
+    /// Releases the managed and unmanaged resources used by the <see cref="FixiClient"/>.
+    /// </summary>
     public void Dispose()
     {
       Dispose(true);
     }
 
+    /// <summary>
+    /// Releases the unmanaged resources used by the <see cref="FixiClient"/> and
+    /// optionally disposes of the managed resources.
+    /// </summary>
+    /// <param name="disposing">
+    /// <c>true</c> to release both managed and unmanaged resources; <c>false</c>
+    /// to releases only unmanaged resources.
+    /// </param>
     protected virtual void Dispose(bool disposing)
     {
       if (disposing)
@@ -94,7 +129,7 @@ namespace Decos.Fixi
     /// <returns>A new instance of the API.</returns>
     protected virtual T CreateApiInstance<T>()
     {
-      return Refit.RestService.For<T>(HttpClient, refitSettings);
+      return Refit.RestService.For<T>(HttpClient, RefitSettings);
     }
 
     /// <summary>
