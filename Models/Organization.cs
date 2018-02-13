@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Decos.Fixi.Models
+namespace Decos.Fixi
 {
   /// <summary>
   /// Represents an organization using Fixi.
