@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="apiBaseAddress" value="http://localhost:57651/" />
+    <Parameter name="apiKey" value="ZGdtfbc0R+wZYXkJoRYUfNZnB/Iu0jVK7nXmr3zRuUs=" />
+    <Parameter name="apiSecret" value="/X84+9AQhxO3u2HJgllyWAVQJ9O5cE8VBPlN8U4C77U=" />
+  </TestRunParameters>
+</RunSettings>

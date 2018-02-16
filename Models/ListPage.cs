@@ -34,11 +34,11 @@ namespace Decos.Fixi
     /// <summary>
     /// Gets or sets the total number of results across all pages.
     /// </summary>
-    public int Count { get; }
+    public int Count { get; set; }
 
     /// <summary>
     /// Gets or sets a collection of the results on the page.
     /// </summary>
-    public ICollection<T> Results { get; }
+    public IReadOnlyCollection<T> Results { get; set; }
   }
 }

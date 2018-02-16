@@ -161,5 +161,14 @@ namespace Decos.Fixi
     /// Gets or sets a value that determines who can see the issue.
     /// </summary>
     public Visibility Visibility { get; set; }
+
+    /// <summary>
+    /// Returns a string that represents the current object.
+    /// </summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string ToString()
+    {
+      return $"{ID} {CategoryName} ({Status}): {Description}";
+    }
   }
 }
