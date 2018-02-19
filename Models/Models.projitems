@@ -6,8 +6,7 @@
     <SharedGUID>d95ba5cc-8355-48f4-900a-e41748de8141</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>
-    </Import_RootNamespace>
+    <Import_RootNamespace>Decos.Fixi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
@@ -23,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Point.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Polygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Region.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Team.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Visibility.cs" />

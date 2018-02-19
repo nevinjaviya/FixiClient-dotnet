@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Decos.Fixi.Http;
 
 namespace Decos.Fixi.Tests
 {

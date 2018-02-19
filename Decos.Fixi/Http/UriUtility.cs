@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Http
 {
   public static class UriUtility
   {

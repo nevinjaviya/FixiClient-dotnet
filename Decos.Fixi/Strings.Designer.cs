@@ -61,6 +61,33 @@ namespace Decos.Fixi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}..
+        /// </summary>
+        internal static string ApiRequestFailedWithStatus {
+            get {
+                return ResourceManager.GetString("ApiRequestFailedWithStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}. {2}.
+        /// </summary>
+        internal static string ApiRequestFailedWithStatusAndMessage {
+            get {
+                return ResourceManager.GetString("ApiRequestFailedWithStatusAndMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}, but the error response was in an unexpected format..
+        /// </summary>
+        internal static string InvalidErrorResponse_Json {
+            get {
+                return ResourceManager.GetString("InvalidErrorResponse_Json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The API response was in an unexpected format..
         /// </summary>
         internal static string InvalidResponse {

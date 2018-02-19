@@ -5,6 +5,7 @@ using System.Linq;
 using System.Globalization;
 using System.Net.Http;
 using System.Reflection;
+using Decos.Fixi.Http;
 
 namespace Decos.Fixi
 {

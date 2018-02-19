@@ -40,5 +40,15 @@ namespace Decos.Fixi
     /// Gets or sets a collection of the results on the page.
     /// </summary>
     public IReadOnlyCollection<T> Results { get; set; }
+
+    /// <summary>
+    /// Returns a string that represents the current object.
+    /// </summary>
+    /// <returns>A string that represents the current object.</returns>
+    public override string ToString()
+    {
+      var resultCount = Results?.Count ?? 0;
+      return $"{resultCount} result(s), {Count} total";
+    }
   }
 }

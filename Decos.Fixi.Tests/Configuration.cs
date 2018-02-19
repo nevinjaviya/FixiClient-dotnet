@@ -21,9 +21,9 @@ namespace Decos.Fixi.Tests
       apiKey = context.Properties["apiKey"] as string;
       apiSecret = context.Properties["apiSecret"] as string;
 
-      Assert.IsNotNull(baseAddress, "apiBaseAddress is not configured.");
-      Assert.IsNotNull(apiKey, "apiKey is not configured.");
-      Assert.IsNotNull(apiSecret, "apiSecret is not configured.");
+      Assert.IsNotNull(baseAddress, "apiBaseAddress is not configured. Make sure a valid test settings file is selected.");
+      Assert.IsNotNull(apiKey, "apiKey is not configured. Make sure a valid test settings file is selected.");
+      Assert.IsNotNull(apiSecret, "apiSecret is not configured. Make sure a valid test settings file is selected.");
     }
   }
 }

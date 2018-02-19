@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Text;
 using System.Web;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Http
 {
   /// <summary>
   /// Represents a collection of query string parameters.

@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Refit;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Http
 {
-  public interface IIssuesApi
+  public class IssuesApi : RestApi, IIssuesApi
   {
+    public IssuesApi(HttpClient httpClient) : base(httpClient)
+    {
+    }
+
     /// <summary>
     /// Returns a list of issues in descending order according to creation date.
     /// </summary>
@@ -47,29 +51,27 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of issues.</returns>
-    [Get("/issues?api-version=2.0")]
-    Task<ListPage<IssueListItem>> FindAsync(
-      string q = null,
-      bool searchPrivateInfo = false,
-      string reportedBy = null,
-      string assignedTo = null,
-      string[] category = null,
-      Status[] status = null,
-      DateTimeOffset? from = null,
-      DateTimeOffset? to = null,
-      int page = 1, int count = 20,
-      CancellationToken cancellationToken = default(CancellationToken));
+    public Task<ListPage<IssueListItem>> FindAsync(
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        int page = 1,
+        int count = 20,
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, page, count };
+      return GetAsync<ListPage<IssueListItem>>("/issues?api-version=2.0", args, cancellationToken);
+    }
 
-    /// <summary>
-    /// Returns the issue with the specified ID.
-    /// </summary>
-    /// <param name="id">The public issue ID.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>The issue with the specified ID.</returns>
-    [Get("/issues/{id}")]
-    Task<Issue> GetAsync(string id, CancellationToken cancellationToken);
+    public Task<Issue> GetAsync(string id, CancellationToken cancellationToken)
+    {
+      return GetAsync<Issue>($"/issues/{id}", cancellationToken);
+    }
 
     /// <summary>
     /// Returns a list of issues within the specified bounds in descending order
@@ -102,10 +104,10 @@ namespace Decos.Fixi
     /// return per page.
     /// </param>
     /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
+    /// A token to observe for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of issues.</returns>
-    Task<ListPage<IssueMapListItem>> GetMapIssuesAsync(
+    public Task<ListPage<IssueMapListItem>> GetMapIssuesAsync(
         double north,
         double east,
         double south,
@@ -116,7 +118,11 @@ namespace Decos.Fixi
         DateTimeOffset? to = null,
         int page = 1,
         int count = 200,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { north, east, south, west, category, status, from, to, page, count };
+      return GetAsync<ListPage<IssueMapListItem>>("/issues/map?api-version=2.0", args, cancellationToken);
+    }
 
     /// <summary>
     /// Returns a list of issues near the specified location.
@@ -164,22 +170,26 @@ namespace Decos.Fixi
     /// <returns>
     /// A task that returns a list of issues near the specified location.
     /// </returns>
-    Task<ListPage<IssueListItem>> GetNearbyIssuesAsync(
-      double latitude,
-      double longitude,
-      double radius,
-      string q = null,
-      bool searchPrivateInfo = false,
-      string reportedBy = null,
-      string assignedTo = null,
-      string[] category = null,
-      Status[] status = null,
-      DateTimeOffset? from = null,
-      DateTimeOffset? to = null,
-      SortOrder sort = SortOrder.Default,
-      int page = 1,
-      int count = 20,
-      CancellationToken cancellationToken = default(CancellationToken));
+    public Task<ListPage<IssueListItem>> GetNearbyIssuesAsync(
+        double latitude,
+        double longitude,
+        double radius,
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        SortOrder sort = SortOrder.Default,
+        int page = 1,
+        int count = 20,
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { latitude, longitude, radius, q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, sort, page, count };
+      return GetAsync<ListPage<IssueListItem>>("/issues/nearby?api-version=2.0", args, cancellationToken);
+    }
 
     /// <summary>
     /// Returns a list of issues assigned to the logged-in user's teams.
@@ -214,13 +224,13 @@ namespace Decos.Fixi
     /// return per page.
     /// </param>
     /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
+    /// A token to observe for cancellation requests.
     /// </param>
     /// <returns>
     /// A task that returns a list of issues assigned to any of the logged-in
     /// user's teams.
     /// </returns>
-    Task<ListPage<IssueListItem>> GetTeamIssuesAsync(
+    public Task<ListPage<IssueListItem>> GetTeamIssuesAsync(
         string q = null,
         string reportedBy = null,
         string assignedTo = null,
@@ -230,18 +240,15 @@ namespace Decos.Fixi
         DateTimeOffset? to = null,
         int page = 1,
         int count = 20,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { q, reportedBy, assignedTo, category, status, from, to, page, count };
+      return GetAsync<ListPage<IssueListItem>>("/issues/team?api-version=2.0", args, cancellationToken);
+    }
 
-    /// <summary>
-    /// Updates an existing issue.
-    /// </summary>
-    /// <param name="id">The public issue ID.</param>
-    /// <param name="issueData">The modified issue data.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>The updated issue.</returns>
-    [Patch("/issues/{id}")]
-    Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken);
+    public Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

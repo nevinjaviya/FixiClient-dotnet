@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Http
 {
   /// <summary>
   /// Represents a RESTful API.
@@ -38,7 +38,6 @@ namespace Decos.Fixi
     /// </summary>
     public HttpClient HttpClient { get; }
 
-
     /// <summary>
     /// Sends a GET request to the specified URI.
     /// </summary>
@@ -50,7 +49,7 @@ namespace Decos.Fixi
     /// <returns>
     /// A task that returns an object instance of the specified type.
     /// </returns>
-    /// <exception cref="InvalidResponseException">
+    /// <exception cref="InvalidResponseFormatException">
     /// An error occurred during deserialization of the response.
     /// </exception>
     protected Task<TResult> GetAsync<TResult>(string requestUri, CancellationToken cancellationToken)
@@ -73,7 +72,8 @@ namespace Decos.Fixi
     /// <returns>
     /// A task that returns an object instance of the specified type.
     /// </returns>
-    /// <exception cref="InvalidResponseException">
+    /// <exception cref="ApiException">An error occurred the request.</exception>
+    /// <exception cref="InvalidResponseFormatException">
     /// An error occurred during deserialization of the response.
     /// </exception>
     protected async Task<TResult> GetAsync<TResult>(string requestUri, object parameters, CancellationToken cancellationToken)
@@ -87,13 +87,35 @@ namespace Decos.Fixi
         }
 
         var response = await HttpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode)
+          throw await ApiRequestFailedAsync(response, cancellationToken).ConfigureAwait(false);
+
         return await response.Content.ReadAsAsync<TResult>(Formatters, cancellationToken).ConfigureAwait(false);
       }
       catch (JsonReaderException ex)
       {
-        var message = string.Format(Strings.InvalidResponse_Json, typeof(TResult));
-        throw new InvalidResponseException(message, ex);
+        throw InvalidResponseFormat<TResult>(ex);
       }
+    }
+
+    private async Task<ApiException> ApiRequestFailedAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+      try
+      {
+        var error = await response.Content.ReadAsAsync<HttpError>(Formatters, cancellationToken).ConfigureAwait(false);
+        return new ApiException(response.RequestMessage.RequestUri, response.StatusCode, error);
+      }
+      catch (JsonReaderException ex)
+      {
+        var message = string.Format(Strings.InvalidErrorResponse_Json, response.RequestMessage.RequestUri, response.StatusCode);
+        return new InvalidResponseFormatException(message, response.RequestMessage.RequestUri, response.StatusCode, ex);
+      }
+    }
+
+    private InvalidResponseFormatException InvalidResponseFormat<TExpected>(JsonReaderException ex)
+    {
+      var message = string.Format(Strings.InvalidResponse_Json, typeof(TExpected));
+      return new InvalidResponseFormatException(message, ex);
     }
   }
 }
