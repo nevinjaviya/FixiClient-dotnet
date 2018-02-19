@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading;
@@ -12,6 +13,8 @@ namespace Decos.Fixi.Http
   /// </summary>
   public abstract class RestApi
   {
+    private const int BufferSize = 81920;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="RestApi"/> class that uses
     /// the specified <see cref="System.Net.Http.HttpClient"/>.
@@ -49,6 +52,7 @@ namespace Decos.Fixi.Http
     /// <returns>
     /// A task that returns an object instance of the specified type.
     /// </returns>
+    /// <exception cref="ApiException">An error occurred the request.</exception>
     /// <exception cref="InvalidResponseFormatException">
     /// An error occurred during deserialization of the response.
     /// </exception>
@@ -80,13 +84,8 @@ namespace Decos.Fixi.Http
     {
       try
       {
-        if (parameters != null)
-        {
-          var query = QueryStringParameterCollection.FromObject(parameters);
-          requestUri = UriUtility.AddQuery(requestUri, query);
-        }
-
-        var response = await HttpClient.GetAsync(requestUri, cancellationToken).ConfigureAwait(false);
+        var uri = BuildRequestUri(requestUri, parameters);
+        var response = await HttpClient.GetAsync(uri, cancellationToken).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
           throw await ApiRequestFailedAsync(response, cancellationToken).ConfigureAwait(false);
 
@@ -98,17 +97,56 @@ namespace Decos.Fixi.Http
       }
     }
 
+    /// <summary>
+    /// Sends a POST request to the specified URI using an object to provide
+    /// request parameters and writes the response body to the specified stream.
+    /// </summary>
+    /// <param name="requestUri">The URI to send a request to.</param>
+    /// <param name="parameters">
+    /// An object whose public properties are sent as query string parameters.
+    /// </param>
+    /// <param name="destination">
+    /// The stream that the content of the response will be written to.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    protected async Task PostToStreamAsync(string requestUri, object parameters, Stream destination, CancellationToken cancellationToken)
+    {
+      var uri = BuildRequestUri(requestUri, parameters);
+      var response = await HttpClient.PostAsync(uri, null, cancellationToken).ConfigureAwait(false);
+      if (!response.IsSuccessStatusCode)
+        throw await ApiRequestFailedAsync(response, cancellationToken).ConfigureAwait(false);
+
+      using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+      {
+        await stream.CopyToAsync(destination, BufferSize, cancellationToken).ConfigureAwait(false);
+      }
+    }
+
+    private static Uri BuildRequestUri(string requestUri, object parameters)
+    {
+      if (parameters != null)
+      {
+        var query = QueryStringParameterCollection.FromObject(parameters);
+        requestUri = UriUtility.AddQuery(requestUri, query);
+      }
+
+      return new Uri(requestUri, UriKind.RelativeOrAbsolute);
+    }
+
     private async Task<ApiException> ApiRequestFailedAsync(HttpResponseMessage response, CancellationToken cancellationToken)
     {
       try
       {
         var error = await response.Content.ReadAsAsync<HttpError>(Formatters, cancellationToken).ConfigureAwait(false);
-        return new ApiException(response.RequestMessage.RequestUri, response.StatusCode, error);
+        return new ApiException(response.RequestMessage, response.StatusCode, error);
       }
       catch (JsonReaderException ex)
       {
-        var message = string.Format(Strings.InvalidErrorResponse_Json, response.RequestMessage.RequestUri, response.StatusCode);
-        return new InvalidResponseFormatException(message, response.RequestMessage.RequestUri, response.StatusCode, ex);
+        var message = string.Format(Strings.InvalidErrorResponse_Json, response.RequestMessage.Method, response.RequestMessage.RequestUri, response.StatusCode);
+        return new InvalidResponseFormatException(message, response.RequestMessage, response.StatusCode, ex);
       }
     }
 

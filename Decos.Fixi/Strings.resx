@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApiRequestFailedWithStatus" xml:space="preserve">
-    <value>The request to {0} failed with status code {1:d} {1:g}.</value>
+    <value>The {0} request to {1} failed with status code {2:d} {2:g}.</value>
   </data>
   <data name="ApiRequestFailedWithStatusAndMessage" xml:space="preserve">
-    <value>The request to {0} failed with status code {1:d} {1:g}. {2}</value>
+    <value>The {0} request to {1} failed with status code {2:d} {2:g}. {3}</value>
   </data>
   <data name="InvalidErrorResponse_Json" xml:space="preserve">
-    <value>The request to {0} failed with status code {1:d} {1:g}, but the error response was in an unexpected format.</value>
+    <value>The {0} request to {1} failed with status code {2:d} {2:g}, but the error response was in an unexpected format.</value>
   </data>
   <data name="InvalidResponse" xml:space="preserve">
     <value>The API response was in an unexpected format.</value>

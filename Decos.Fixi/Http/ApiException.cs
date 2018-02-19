@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 
 namespace Decos.Fixi.Http
 {
@@ -30,12 +31,12 @@ namespace Decos.Fixi.Http
     /// the specified message, request URI and status code.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
-    public ApiException(string message, Uri requestUri, HttpStatusCode statusCode)
+    public ApiException(string message, HttpRequestMessage request, HttpStatusCode statusCode)
       : base(message)
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
     }
 
@@ -44,13 +45,13 @@ namespace Decos.Fixi.Http
     /// the specified message, request URI, status code and content.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
-    public ApiException(string message, Uri requestUri, HttpStatusCode statusCode, HttpError error)
+    public ApiException(string message, HttpRequestMessage request, HttpStatusCode statusCode, HttpError error)
       : base(message)
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
       Error = error;
     }
@@ -61,16 +62,16 @@ namespace Decos.Fixi.Http
     /// exception that is the cause of this exception.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="innerException">
     /// The exception that is the cause of the current exception, or a null
     /// reference (Nothing in Visual Basic) if no inner exception is specified.
     /// </param>
-    public ApiException(string message, Uri requestUri, HttpStatusCode statusCode, Exception innerException)
+    public ApiException(string message, HttpRequestMessage request, HttpStatusCode statusCode, Exception innerException)
       : base(message, innerException)
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
     }
 
@@ -80,17 +81,17 @@ namespace Decos.Fixi.Http
     /// exception that is the cause of this exception.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
     /// <param name="innerException">
     /// The exception that is the cause of the current exception, or a null
     /// reference (Nothing in Visual Basic) if no inner exception is specified.
     /// </param>
-    public ApiException(string message, Uri requestUri, HttpStatusCode statusCode, HttpError error, Exception innerException)
+    public ApiException(string message, HttpRequestMessage request, HttpStatusCode statusCode, HttpError error, Exception innerException)
       : base(message, innerException)
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
       Error = error;
     }
@@ -116,12 +117,12 @@ namespace Decos.Fixi.Http
     /// Initializes a new instance of the <see cref="ApiException"/> class with
     /// the specified request URI and response status.
     /// </summary>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
-    public ApiException(Uri requestUri, HttpStatusCode statusCode)
-      : base(string.Format(Strings.ApiRequestFailedWithStatus, requestUri, statusCode))
+    public ApiException(HttpRequestMessage request, HttpStatusCode statusCode)
+      : base(string.Format(Strings.ApiRequestFailedWithStatus, request.Method, request.RequestUri, statusCode))
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
     }
 
@@ -129,13 +130,13 @@ namespace Decos.Fixi.Http
     /// Initializes a new instance of the <see cref="ApiException"/> class with
     /// the specified request URI, response status and content.
     /// </summary>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
-    public ApiException(Uri requestUri, HttpStatusCode statusCode, HttpError error)
-      : base(string.Format(Strings.ApiRequestFailedWithStatusAndMessage, requestUri, statusCode, error))
+    public ApiException(HttpRequestMessage request, HttpStatusCode statusCode, HttpError error)
+      : base(string.Format(Strings.ApiRequestFailedWithStatusAndMessage, request.Method, request.RequestUri, statusCode, error))
     {
-      RequestUri = requestUri;
+      Request = request;
       StatusCode = statusCode;
       Error = error;
     }
@@ -170,9 +171,9 @@ namespace Decos.Fixi.Http
     public HttpError Error { get; }
 
     /// <summary>
-    /// Gets the URI of the request that failed.
+    /// Gets the HTTP request that failed.
     /// </summary>
-    public Uri RequestUri { get; }
+    public HttpRequestMessage Request { get; }
 
     /// <summary>
     /// Gets the HTTP status code of the response.

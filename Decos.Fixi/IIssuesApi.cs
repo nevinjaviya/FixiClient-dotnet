@@ -1,12 +1,107 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Refit;
 
 namespace Decos.Fixi
 {
+  /// <summary>
+  /// Defines the methods available in the issues API.
+  /// </summary>
   public interface IIssuesApi
   {
+    /// <summary>
+    /// Generates an Excel overview of a list of issues assigned to the logged-in
+    /// user's teams and writes the result to the specified stream.
+    /// </summary>
+    /// <param name="destination">
+    /// The stream to which the Excel worksheet will be written.
+    /// </param>
+    /// <param name="q">An optional search string.</param>
+    /// <param name="reportedBy">
+    /// Optionally filters the results on reporter email address.
+    /// </param>
+    /// <param name="assignedTo">
+    /// Optionally filters the results on handler email address or team short name.
+    /// </param>
+    /// <param name="category">
+    /// Optionally filters the results on category short name. This parameter can
+    /// be specified multiple times.
+    /// </param>
+    /// <param name="status">
+    /// Optionally filters the results on status. This parameter can be specified
+    /// multiple times.
+    /// </param>
+    /// <param name="from">
+    /// If specified, only issues created on or after this date will be included.
+    /// </param>
+    /// <param name="to">
+    /// If specified, only issues created on or before this date will be included.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task ExportTeamIssuesToStreamAsync(
+        Stream destination,
+        string q = null,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        CancellationToken cancellationToken = default(CancellationToken));
+
+    /// <summary>
+    /// Generates an Excel overview of a list of issues and writes the result to
+    /// the specified stream.
+    /// </summary>
+    /// <param name="destination">
+    /// The stream to which the Excel worksheet will be written.
+    /// </param>
+    /// <param name="q">An optional search string.</param>
+    /// <param name="searchPrivateInfo">
+    /// <c>true</c> to search fields that may contain private information in
+    /// addition to public information, or <c>false</c> to search only public information.
+    /// </param>
+    /// <param name="reportedBy">
+    /// Optionally filters the results on reporter email address.
+    /// </param>
+    /// <param name="assignedTo">
+    /// Optionally filters the results on handler email address or team short name.
+    /// </param>
+    /// <param name="category">
+    /// Optionally filters the results on category short name. This parameter can
+    /// be specified multiple times.
+    /// </param>
+    /// <param name="status">
+    /// Optionally filters the results on status. This parameter can be specified
+    /// multiple times.
+    /// </param>
+    /// <param name="from">
+    /// If specified, only issues created on or after this date will be included.
+    /// </param>
+    /// <param name="to">
+    /// If specified, only issues created on or before this date will be included.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task ExportToStreamAsync(
+        Stream destination,
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        CancellationToken cancellationToken = default(CancellationToken));
+
     /// <summary>
     /// Returns a list of issues in descending order according to creation date.
     /// </summary>

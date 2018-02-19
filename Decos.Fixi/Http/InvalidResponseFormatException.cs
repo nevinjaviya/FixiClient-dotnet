@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 
 namespace Decos.Fixi.Http
 {
@@ -48,10 +49,10 @@ namespace Decos.Fixi.Http
     /// cref="InvalidResponseFormatException"/> class with the specified request
     /// URI and response status.
     /// </summary>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
-    public InvalidResponseFormatException(Uri requestUri, System.Net.HttpStatusCode statusCode)
-      : base(requestUri, statusCode)
+    public InvalidResponseFormatException(HttpRequestMessage request, System.Net.HttpStatusCode statusCode)
+      : base(request, statusCode)
     {
     }
 
@@ -60,11 +61,11 @@ namespace Decos.Fixi.Http
     /// cref="InvalidResponseFormatException"/> class with the specified request
     /// URI, response status and content.
     /// </summary>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
-    public InvalidResponseFormatException(Uri requestUri, System.Net.HttpStatusCode statusCode, HttpError error)
-      : base(requestUri, statusCode, error)
+    public InvalidResponseFormatException(HttpRequestMessage request, System.Net.HttpStatusCode statusCode, HttpError error)
+      : base(request, statusCode, error)
     {
     }
 
@@ -73,11 +74,11 @@ namespace Decos.Fixi.Http
     /// the specified message and request information.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
-    public InvalidResponseFormatException(string message, Uri requestUri, System.Net.HttpStatusCode statusCode, HttpError error)
-      : base(message, requestUri, statusCode, error)
+    public InvalidResponseFormatException(string message, HttpRequestMessage request, System.Net.HttpStatusCode statusCode, HttpError error)
+      : base(message, request, statusCode, error)
     {
     }
 
@@ -86,10 +87,10 @@ namespace Decos.Fixi.Http
     /// the specified message and request information.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
-    public InvalidResponseFormatException(string message, Uri requestUri, System.Net.HttpStatusCode statusCode)
-      : base(message, requestUri, statusCode)
+    public InvalidResponseFormatException(string message, HttpRequestMessage request, System.Net.HttpStatusCode statusCode)
+      : base(message, request, statusCode)
     {
     }
 
@@ -99,14 +100,14 @@ namespace Decos.Fixi.Http
     /// exception that is the cause of this exception.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="innerException">
     /// The exception that is the cause of the current exception, or a null
     /// reference (Nothing in Visual Basic) if no inner exception is specified.
     /// </param>
-    public InvalidResponseFormatException(string message, Uri requestUri, System.Net.HttpStatusCode statusCode, Exception innerException)
-      : base(message, requestUri, statusCode, innerException)
+    public InvalidResponseFormatException(string message, HttpRequestMessage request, System.Net.HttpStatusCode statusCode, Exception innerException)
+      : base(message, request, statusCode, innerException)
     {
     }
 
@@ -116,15 +117,15 @@ namespace Decos.Fixi.Http
     /// exception that is the cause of this exception.
     /// </summary>
     /// <param name="message">The message that describes the error.</param>
-    /// <param name="requestUri">The URI of the request.</param>
+    /// <param name="request">The request that failed.</param>
     /// <param name="statusCode">The status code of the response.</param>
     /// <param name="error">The response to the failed request.</param>
     /// <param name="innerException">
     /// The exception that is the cause of the current exception, or a null
     /// reference (Nothing in Visual Basic) if no inner exception is specified.
     /// </param>
-    public InvalidResponseFormatException(string message, Uri requestUri, System.Net.HttpStatusCode statusCode, HttpError error, Exception innerException)
-      : base(message, requestUri, statusCode, error, innerException)
+    public InvalidResponseFormatException(string message, HttpRequestMessage request, System.Net.HttpStatusCode statusCode, HttpError error, Exception innerException)
+      : base(message, request, statusCode, error, innerException)
     {
     }
 

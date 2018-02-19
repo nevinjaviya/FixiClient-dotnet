@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,6 +10,105 @@ namespace Decos.Fixi.Http
   {
     public IssuesApi(HttpClient httpClient) : base(httpClient)
     {
+    }
+
+    /// <summary>
+    /// Generates an Excel overview of a list of issues assigned to the logged-in
+    /// user's teams and writes the result to the specified stream.
+    /// </summary>
+    /// <param name="destination">
+    /// The stream to which the Excel worksheet will be written.
+    /// </param>
+    /// <param name="q">An optional search string.</param>
+    /// <param name="reportedBy">
+    /// Optionally filters the results on reporter email address.
+    /// </param>
+    /// <param name="assignedTo">
+    /// Optionally filters the results on handler email address or team short name.
+    /// </param>
+    /// <param name="category">
+    /// Optionally filters the results on category short name. This parameter can
+    /// be specified multiple times.
+    /// </param>
+    /// <param name="status">
+    /// Optionally filters the results on status. This parameter can be specified
+    /// multiple times.
+    /// </param>
+    /// <param name="from">
+    /// If specified, only issues created on or after this date will be included.
+    /// </param>
+    /// <param name="to">
+    /// If specified, only issues created on or before this date will be included.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public Task ExportTeamIssuesToStreamAsync(
+        Stream destination,
+        string q = null,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { q, reportedBy, assignedTo, category, status, from, to };
+      return PostToStreamAsync("/issues/exportTeam?api-version=2.0", args, destination, cancellationToken);
+    }
+
+    /// <summary>
+    /// Generates an Excel overview of a list of issues and writes the result to
+    /// the specified stream.
+    /// </summary>
+    /// <param name="destination">
+    /// The stream to which the Excel worksheet will be written.
+    /// </param>
+    /// <param name="q">An optional search string.</param>
+    /// <param name="searchPrivateInfo">
+    /// <c>true</c> to search fields that may contain private information in
+    /// addition to public information, or <c>false</c> to search only public information.
+    /// </param>
+    /// <param name="reportedBy">
+    /// Optionally filters the results on reporter email address.
+    /// </param>
+    /// <param name="assignedTo">
+    /// Optionally filters the results on handler email address or team short name.
+    /// </param>
+    /// <param name="category">
+    /// Optionally filters the results on category short name. This parameter can
+    /// be specified multiple times.
+    /// </param>
+    /// <param name="status">
+    /// Optionally filters the results on status. This parameter can be specified
+    /// multiple times.
+    /// </param>
+    /// <param name="from">
+    /// If specified, only issues created on or after this date will be included.
+    /// </param>
+    /// <param name="to">
+    /// If specified, only issues created on or before this date will be included.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public Task ExportToStreamAsync(
+        Stream destination,
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to };
+      return PostToStreamAsync("/issues/export?api-version=2.0", args, destination, cancellationToken);
     }
 
     /// <summary>

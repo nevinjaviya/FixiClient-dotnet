@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Decos.Fixi.Http;
@@ -70,8 +71,6 @@ namespace Decos.Fixi.Tests
     public async Task TeamIssuesFailsWhenNotLoggedIn()
     {
       var issues = await FixiClient.Issues.GetTeamIssuesAsync();
-
-      Assert.Fail();
     }
 
     [TestMethod]
@@ -86,6 +85,29 @@ namespace Decos.Fixi.Tests
       {
         Assert.AreEqual(lat, issue.Location.Latitude, 0.01);
         Assert.AreEqual(lng, issue.Location.Longitude, 0.01);
+      }
+    }
+
+    [TestMethod]
+    public async Task ExportIssuesWritesResultToStream()
+    {
+      using (var stream = new MemoryStream())
+      {
+        await FixiClient.Issues.ExportToStreamAsync(stream);
+
+        Assert.IsTrue(stream.Length > 0);
+      }
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ApiException), AllowDerivedTypes = true)]
+    public async Task ExportTeamIssuesFailsWhenNotLoggedIn()
+    {
+      using (var stream = new MemoryStream())
+      {
+        await FixiClient.Issues.ExportTeamIssuesToStreamAsync(stream);
+
+        Assert.Fail();
       }
     }
   }

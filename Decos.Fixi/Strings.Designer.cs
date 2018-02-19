@@ -61,7 +61,7 @@ namespace Decos.Fixi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}..
+        ///   Looks up a localized string similar to The {0} request to {1} failed with status code {2:d} {2:g}..
         /// </summary>
         internal static string ApiRequestFailedWithStatus {
             get {
@@ -70,7 +70,7 @@ namespace Decos.Fixi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}. {2}.
+        ///   Looks up a localized string similar to The {0} request to {1} failed with status code {2:d} {2:g}. {3}.
         /// </summary>
         internal static string ApiRequestFailedWithStatusAndMessage {
             get {
@@ -79,7 +79,7 @@ namespace Decos.Fixi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The request to {0} failed with status code {1:d} {1:g}, but the error response was in an unexpected format..
+        ///   Looks up a localized string similar to The {0} request to {1} failed with status code {2:d} {2:g}, but the error response was in an unexpected format..
         /// </summary>
         internal static string InvalidErrorResponse_Json {
             get {
