@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
@@ -18,6 +19,33 @@ namespace Decos.Fixi.Http
     /// <param name="httpClient">An <see cref="HttpClient"/> for sending requests.</param>
     public IssuesApi(HttpClient httpClient) : base(httpClient)
     {
+    }
+
+    /// <summary>
+    /// Creates a new issue.
+    /// </summary>
+    /// <param name="issueData">The issue data.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns the created issue.</returns>
+    public Task<Issue> CreateAsync(IssueChanges issueData, CancellationToken cancellationToken = default(CancellationToken))
+    {
+      return PostAsync<IssueChanges, Issue>("/issues", issueData, cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the issue with the specified ID.
+    /// </summary>
+    /// <param name="id">The issue ID of the issue the delete.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public Task DeleteIssueAsync(string id, CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
+      return DeleteAsync(requestUri, cancellationToken);
     }
 
     /// <summary>
@@ -186,7 +214,33 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the issue with the specified ID.</returns>
     public Task<Issue> GetAsync(string id, CancellationToken cancellationToken)
     {
-      return GetAsync<Issue>($"/issues/{id}", cancellationToken);
+      var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
+      return GetAsync<Issue>(requestUri, cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of the IDs of deleted issues.
+    /// </summary>
+    /// <param name="since">
+    /// If specified, only issues deleted since this date/time will be included
+    /// in the search.
+    /// </param>
+    /// <param name="page">
+    /// An optional non-zero positive integer indicating the number of the page
+    /// to retrieve.
+    /// </param>
+    /// <param name="count">
+    /// An optional non-zero positive integer indicating the number of results to
+    /// return per page.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns a list of the IDs of deleted issues.</returns>
+    public Task<IEnumerable<string>> GetDeletedIssueIdsAsync(DateTimeOffset? since = null, int page = 1, int count = 1000, CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { since, page, count };
+      return GetAsync<IEnumerable<string>>("/issues/deleted", args, cancellationToken);
     }
 
     /// <summary>
@@ -363,7 +417,7 @@ namespace Decos.Fixi.Http
     }
 
     /// <summary>
-    /// Updates an existing issue. This method is not yet implemented.
+    /// Updates an existing issue.
     /// </summary>
     /// <param name="id">The public issue ID.</param>
     /// <param name="issueData">The modified issue data.</param>
@@ -371,10 +425,10 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
-    /// <exception cref="NotImplementedException"></exception>
     public Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken)
     {
-      throw new NotImplementedException();
+      var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
+      return PatchAsync<IssueChanges, Issue>(requestUri, issueData, cancellationToken);
     }
   }
 }

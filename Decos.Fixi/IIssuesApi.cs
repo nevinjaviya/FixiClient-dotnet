@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,30 @@ namespace Decos.Fixi
   /// </summary>
   public interface IIssuesApi
   {
+    /// <summary>
+    /// Creates a new issue.
+    /// </summary>
+    /// <param name="issueData">The issue data.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns the created issue.</returns>
+    Task<Issue> CreateAsync(
+        IssueChanges issueData,
+        CancellationToken cancellationToken = default(CancellationToken));
+
+    /// <summary>
+    /// Deletes the issue with the specified ID.
+    /// </summary>
+    /// <param name="id">The issue ID of the issue the delete.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    Task DeleteIssueAsync(
+        string id,
+        CancellationToken cancellationToken = default(CancellationToken));
+
     /// <summary>
     /// Generates an Excel overview of a list of issues assigned to the logged-in
     /// user's teams and writes the result to the specified stream.
@@ -161,7 +186,34 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the issue with the specified ID.</returns>
-    Task<Issue> GetAsync(string id, CancellationToken cancellationToken);
+    Task<Issue> GetAsync(
+        string id,
+        CancellationToken cancellationToken = default(CancellationToken));
+
+    /// <summary>
+    /// Returns a list of the IDs of deleted issues.
+    /// </summary>
+    /// <param name="since">
+    /// If specified, only issues deleted since this date/time will be included
+    /// in the search.
+    /// </param>
+    /// <param name="page">
+    /// An optional non-zero positive integer indicating the number of the page
+    /// to retrieve.
+    /// </param>
+    /// <param name="count">
+    /// An optional non-zero positive integer indicating the number of results to
+    /// return per page.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns a list of the IDs of deleted issues.</returns>
+    Task<IEnumerable<string>> GetDeletedIssueIdsAsync(
+        DateTimeOffset? since = null,
+        int page = 1,
+        int count = 1000,
+        CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns a list of issues within the specified bounds in descending order
@@ -333,6 +385,9 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
-    Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken);
+    Task<Issue> UpdateAsync(
+        string id,
+        IssueChanges issueData,
+        CancellationToken cancellationToken = default(CancellationToken));
   }
 }
