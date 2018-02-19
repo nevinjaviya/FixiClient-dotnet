@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Decos.Fixi.Http
 {
+  /// <summary>
+  /// Represents a RESTful API client to manage issues in Fixi.
+  /// </summary>
   public class IssuesApi : RestApi, IIssuesApi
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IssuesApi"/> class using the
+    /// specified <see cref="HttpClient"/>.
+    /// </summary>
+    /// <param name="httpClient">An <see cref="HttpClient"/> for sending requests.</param>
     public IssuesApi(HttpClient httpClient) : base(httpClient)
     {
     }
@@ -168,6 +176,14 @@ namespace Decos.Fixi.Http
       return GetAsync<ListPage<IssueListItem>>("/issues?api-version=2.0", args, cancellationToken);
     }
 
+    /// <summary>
+    /// Returns the issue with the specified ID.
+    /// </summary>
+    /// <param name="id">The public issue ID.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns the issue with the specified ID.</returns>
     public Task<Issue> GetAsync(string id, CancellationToken cancellationToken)
     {
       return GetAsync<Issue>($"/issues/{id}", cancellationToken);
@@ -346,6 +362,16 @@ namespace Decos.Fixi.Http
       return GetAsync<ListPage<IssueListItem>>("/issues/team?api-version=2.0", args, cancellationToken);
     }
 
+    /// <summary>
+    /// Updates an existing issue. This method is not yet implemented.
+    /// </summary>
+    /// <param name="id">The public issue ID.</param>
+    /// <param name="issueData">The modified issue data.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns the updated issue.</returns>
+    /// <exception cref="NotImplementedException"></exception>
     public Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken)
     {
       throw new NotImplementedException();

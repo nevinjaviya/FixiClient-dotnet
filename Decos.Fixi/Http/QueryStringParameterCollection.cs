@@ -172,8 +172,9 @@ namespace Decos.Fixi.Http
     }
 
     /// <summary>
-    /// Copies the entries in the specified <see cref="NameValueCollection"/> to
-    /// the current collection.
+    /// Copies the entries in the specified <see
+    /// cref="System.Collections.Specialized.NameValueCollection"/> to the
+    /// current collection.
     /// </summary>
     /// <param name="collection">The collection whose entries to copy.</param>
     public QueryStringParameterCollection Add(NameValueCollection collection)

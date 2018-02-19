@@ -2,7 +2,6 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Refit;
 
 namespace Decos.Fixi
 {
@@ -142,7 +141,6 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of issues.</returns>
-    [Get("/issues?api-version=2.0")]
     Task<ListPage<IssueListItem>> FindAsync(
       string q = null,
       bool searchPrivateInfo = false,
@@ -162,8 +160,7 @@ namespace Decos.Fixi
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
-    /// <returns>The issue with the specified ID.</returns>
-    [Get("/issues/{id}")]
+    /// <returns>A task that returns the issue with the specified ID.</returns>
     Task<Issue> GetAsync(string id, CancellationToken cancellationToken);
 
     /// <summary>
@@ -335,8 +332,7 @@ namespace Decos.Fixi
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
-    /// <returns>The updated issue.</returns>
-    [Patch("/issues/{id}")]
+    /// <returns>A task that returns the updated issue.</returns>
     Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken);
   }
 }
