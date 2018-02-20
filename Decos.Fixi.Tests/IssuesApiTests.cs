@@ -110,5 +110,53 @@ namespace Decos.Fixi.Tests
         Assert.Fail();
       }
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ApiException))]
+    public async Task CreateIssueFailsWithoutLocation()
+    {
+      var issue = await FixiClient.Issues.CreateAsync(new IssueData
+      {
+        Location = null
+      });
+    }
+
+    [TestMethod]
+    public async Task CreatedIssueCanBeFoundUpdatedAndDeleted()
+    {
+      var regionName = Configuration.Parameter("region") ?? "decos";
+      var categoryName = Configuration.Parameter("category");
+
+
+      var newIssue = await FixiClient.Issues.CreateAsync(new IssueData
+      {
+        Description = "Issue created for Fixi Client test " + nameof(CreatedIssueCanBeFoundUpdatedAndDeleted) + ". This issue will be updated and deleted shortly. If the issue is not deleted shortly after creation, the test will have failed.",
+        Location = new Point(52.215191, 4.427408),
+        Address = "Huygensstraat 30, 2201 DK Noordwijk",
+        Region = regionName,
+        Category = categoryName,
+        ReportedBy = new Person
+        {
+          Name = "Automated Test",
+          EmailAddress = "info@example.com"
+        }
+      });
+
+      Assert.IsNotNull(newIssue, "Created issue should be returned.");
+      Assert.IsNotNull(newIssue.ID, "Created issue should have an automatically assigned ID.");
+
+      var issue = await FixiClient.Issues.GetAsync(newIssue.ID);
+      Assert.AreEqual(DateTime.Today, newIssue.Created.Value.Date);
+
+      const string source = "test";
+      var updatedIssue = await FixiClient.Issues.UpdateAsync(issue.ID, new IssueData
+      {
+        Source = source
+      });
+      Assert.AreEqual(source, updatedIssue.Source);
+      Assert.AreEqual(DateTime.Today, updatedIssue.Modified.Value.Date);
+
+      await FixiClient.Issues.DeleteIssueAsync(updatedIssue.ID);
+    }
   }
 }

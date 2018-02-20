@@ -9,21 +9,26 @@
     <Import_RootNamespace>Decos.Fixi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Issue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IssueChanges.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IssueData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IssueListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IssueMapListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Organization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Point.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Polygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Region.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Team.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Visibility.cs" />
   </ItemGroup>
 </Project>

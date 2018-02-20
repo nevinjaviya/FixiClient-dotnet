@@ -29,9 +29,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the created issue.</returns>
-    public Task<Issue> CreateAsync(IssueChanges issueData, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<Issue> CreateAsync(IssueData issueData, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return PostAsync<IssueChanges, Issue>("/issues", issueData, cancellationToken);
+      return PostAsync<IssueData, Issue>("/issues", issueData, cancellationToken);
     }
 
     /// <summary>
@@ -425,10 +425,10 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
-    public Task<Issue> UpdateAsync(string id, IssueChanges issueData, CancellationToken cancellationToken)
+    public Task<Issue> UpdateAsync(string id, IssueData issueData, CancellationToken cancellationToken)
     {
       var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
-      return PatchAsync<IssueChanges, Issue>(requestUri, issueData, cancellationToken);
+      return PatchAsync<IssueData, Issue>(requestUri, issueData, cancellationToken);
     }
   }
 }

@@ -16,7 +16,7 @@ namespace Decos.Fixi.Tests
     [TestInitialize]
     public void OnTestStarting()
     {
-      FixiClient = new FixiClient(Configuration.ApiKey, Configuration.ApiSecret, Configuration.BaseAddress);
+      FixiClient = new FixiClient(Configuration.ApiKey, Configuration.ApiSecret, new Uri(Configuration.BaseAddress));
     }
   }
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="apiBaseAddress" value="https://apidev.fixi.nl/" />
+    <Parameter name="apiKey" value="" />
+    <Parameter name="apiSecret" value="" />
+    <Parameter name="region" value="decos" />
+    <Parameter name="category" value="fixi" />
+  </TestRunParameters>
+</RunSettings>

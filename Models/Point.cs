@@ -10,6 +10,39 @@ namespace Decos.Fixi
   public class Point
   {
     /// <summary>
+    /// Initializes a new empty instance of the <see cref="Point"/> class.
+    /// </summary>
+    public Point()
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Point"/> class with the
+    /// specified latitude and longitude.
+    /// </summary>
+    /// <param name="latitude">The latitude coordinate.</param>
+    /// <param name="longitude">The longitude coordinate.</param>
+    public Point(double latitude, double longitude)
+    {
+      Latitude = latitude;
+      Longitude = longitude;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Point"/> class with the
+    /// specified latitude, longitude and elevation.
+    /// </summary>
+    /// <param name="latitude">The latitude coordinate.</param>
+    /// <param name="longitude">The longitude coordinate.</param>
+    /// <param name="elevation">The elevation.</param>
+    public Point(double latitude, double longitude, double? elevation) : this(latitude, longitude)
+    {
+      if (elevation == null)
+        throw new ArgumentNullException(nameof(elevation));
+      Elevation = elevation;
+    }
+
+    /// <summary>
     /// Gets or sets the elevation.
     /// </summary>
     public double? Elevation { get; set; }

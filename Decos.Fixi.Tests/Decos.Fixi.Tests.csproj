@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="FixiDev.runsettings" />
     <None Include="Localhost.runsettings" />
     <None Include="packages.config" />
   </ItemGroup>

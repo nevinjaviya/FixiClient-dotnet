@@ -20,7 +20,7 @@ namespace Decos.Fixi
     /// </param>
     /// <returns>A task that returns the created issue.</returns>
     Task<Issue> CreateAsync(
-        IssueChanges issueData,
+        IssueData issueData,
         CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -387,7 +387,7 @@ namespace Decos.Fixi
     /// <returns>A task that returns the updated issue.</returns>
     Task<Issue> UpdateAsync(
         string id,
-        IssueChanges issueData,
+        IssueData issueData,
         CancellationToken cancellationToken = default(CancellationToken));
   }
 }
