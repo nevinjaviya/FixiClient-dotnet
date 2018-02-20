@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Decos.Fixi.Models;
 using Refit;
 
 namespace Decos.Fixi
@@ -27,7 +26,7 @@ namespace Decos.Fixi
     /// </param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [Get("/organizations?api-version=1.0")]
-    Task<PagedResult<Organization>> FindAsync(
+    Task<ListPage<Organization>> FindAsync(
         int page = 1,
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken));

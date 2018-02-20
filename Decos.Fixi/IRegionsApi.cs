@@ -17,6 +17,6 @@ namespace Decos.Fixi
     Task<Region> GetAsync(string region, CancellationToken cancellationToken);
 
     [Get("/regions/atlocation")]
-    Task<PagedResult<Region>> AtLocationAsync(double latitude, double longitude, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+    Task<ListPage<Region>> AtLocationAsync(double latitude, double longitude, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
   }
 }

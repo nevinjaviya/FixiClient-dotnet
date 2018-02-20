@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Decos.Fixi
 {
+  /// <summary>
+  /// Represents a polygon.
+  /// </summary>
   public class Polygon
   {
     /// <summary>

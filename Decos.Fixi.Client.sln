@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Decos.Fixi", "Decos.Fixi\Decos.Fixi.csproj", "{A9C0CF4A-5CAD-497B-928C-F92BE5623CB5}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Models", "Models\Models.shproj", "{D95BA5CC-8355-48F4-900A-E41748DE8141}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Decos.Fixi.Tests", "Decos.Fixi.Tests\Decos.Fixi.Tests.csproj", "{76E6F649-0C06-41BD-93CB-8A4F538EEB3B}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Models\Models.projitems*{a9c0cf4a-5cad-497b-928c-f92be5623cb5}*SharedItemsImports = 4
+		Models\Models.projitems*{d95ba5cc-8355-48f4-900a-e41748de8141}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,6 +23,10 @@ Global
 		{A9C0CF4A-5CAD-497B-928C-F92BE5623CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9C0CF4A-5CAD-497B-928C-F92BE5623CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9C0CF4A-5CAD-497B-928C-F92BE5623CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E6F649-0C06-41BD-93CB-8A4F538EEB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E6F649-0C06-41BD-93CB-8A4F538EEB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E6F649-0C06-41BD-93CB-8A4F538EEB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E6F649-0C06-41BD-93CB-8A4F538EEB3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
