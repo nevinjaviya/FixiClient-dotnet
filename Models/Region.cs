@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Decos.Fixi
 {
+  /// <summary>
+  /// Represents a region in Fixi.
+  /// </summary>
   public class Region
   {
     /// <summary>
@@ -36,7 +35,7 @@ namespace Decos.Fixi
     public double? MinLatitude { get; set; }
 
     /// <summary>
-    /// Gets or sets the approximate westernmost longitutde of the region.
+    /// Gets or sets the approximate westernmost longitude of the region.
     /// </summary>
     public double? MinLongitude { get; set; }
 

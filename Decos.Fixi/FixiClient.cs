@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Globalization;
 using System.Net.Http;
 using System.Reflection;
+using Decos.Fixi.Http;
 
 namespace Decos.Fixi
 {
@@ -35,7 +39,7 @@ namespace Decos.Fixi
       attachmentsApi = new Lazy<IAttachmentsApi>(CreateApiInstance<IAttachmentsApi>);
       teamsApi = new Lazy<ITeamsApi>(CreateApiInstance<ITeamsApi>);
       regionsApi = new Lazy<IRegionsApi>(CreateApiInstance<IRegionsApi>);
-      issuesApi = new Lazy<IIssuesApi>(CreateApiInstance<IIssuesApi>);
+      issuesApi = new Lazy<IIssuesApi>(() => new IssuesApi(HttpClient));
       organizationsApi = new Lazy<IOrganizationsApi>(CreateApiInstance<IOrganizationsApi>);
     }
 
@@ -90,7 +94,7 @@ namespace Decos.Fixi
             DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
           },
-          UrlParameterFormatter = new InvariantUrlParameterFormatter()
+          UrlParameterFormatter = new FixiApiUrlParameterFormatter()
         };
         settings.JsonSerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { CamelCaseText = true });
         return settings;
@@ -147,13 +151,17 @@ namespace Decos.Fixi
     }
 
     /// <summary>
-    /// Represents a URL parameter formatter that uses the invariant culture.
+    /// Represents a URL parameter formatter that formats parameter values
+    /// according to ASP.NET/Fixi API expectations.
     /// </summary>
-    private class InvariantUrlParameterFormatter : Refit.IUrlParameterFormatter
+    private class FixiApiUrlParameterFormatter : Refit.IUrlParameterFormatter
     {
       public string Format(object value, ParameterInfo parameterInfo)
       {
-        return value != null ? Convert.ToString(value, CultureInfo.InvariantCulture) : null;
+        if (value == null)
+          return null;
+
+        return Convert.ToString(value, CultureInfo.InvariantCulture);
       }
     }
   }
