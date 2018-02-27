@@ -42,8 +42,12 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     public Task DeleteIssueAsync(string id, CancellationToken cancellationToken = default(CancellationToken))
     {
+      if (id == null)
+        throw new ArgumentNullException(nameof(id));
+
       var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
       return DeleteAsync(requestUri, cancellationToken);
     }
@@ -212,8 +216,12 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the issue with the specified ID.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     public Task<Issue> GetAsync(string id, CancellationToken cancellationToken)
     {
+      if (id == null)
+        throw new ArgumentNullException(nameof(id));
+
       var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
       return GetAsync<Issue>(requestUri, cancellationToken);
     }
@@ -425,8 +433,12 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     public Task<Issue> UpdateAsync(string id, IssueData issueData, CancellationToken cancellationToken)
     {
+      if (id == null)
+        throw new ArgumentNullException(nameof(id));
+
       var requestUri = $"/issues/{Uri.EscapeDataString(id)}";
       return PatchAsync<IssueData, Issue>(requestUri, issueData, cancellationToken);
     }
