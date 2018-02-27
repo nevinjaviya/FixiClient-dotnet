@@ -206,5 +206,12 @@ namespace Decos.Fixi.Tests
           throw new AssertFailedException($"The name of the parameter that caused the ArgumentNullExpection does not match. Expected: <{idParameter}>. Actual: <{ex.ParamName}>.", ex);
       }
     }
+
+    [TestMethod]
+    public async Task SomeIssuesHaveUserDetails()
+    {
+      var issues = await FixiClient.Issues.FindAsync();
+      Assert.That.Any(issues.Results, x => x.User != null);
+    }
   }
 }

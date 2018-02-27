@@ -31,5 +31,22 @@ namespace Decos.Fixi.Tests
         throw new AssertFailedException($"{count} element(s) do not satisfy the condition. First mismatch: {failed}. {message}");
       }
     }
+
+    /// <summary>
+    /// Tests whether any element in a collection satisfies a condition.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <param name="assert"></param>
+    /// <param name="collection">The collection to test.</param>
+    /// <param name="predicate">The condition to test for.</param>
+    /// <param name="message">A message to include in the exception.</param>
+    public static void Any<T>(this Assert assert, IEnumerable<T> collection, Func<T, bool> predicate, string message = null)
+    {
+      if (collection == null)
+        throw new ArgumentNullException(nameof(collection));
+
+      if (!collection.Any(predicate))
+        throw new AssertFailedException($"The collection does not contain any elements that satisfy the condition. {message}");
+    }
   }
 }
