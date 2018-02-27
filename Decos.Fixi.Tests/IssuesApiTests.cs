@@ -124,8 +124,8 @@ namespace Decos.Fixi.Tests
     [TestMethod]
     public async Task CreatedIssueCanBeFoundUpdatedAndDeleted()
     {
-      var regionName = Configuration.Parameter("region") ?? "decos";
-      var categoryName = Configuration.Parameter("category");
+      var regionName = Parameter("region") ?? "decos";
+      var categoryName = Parameter("category");
 
 
       var newIssue = await FixiClient.Issues.CreateAsync(new IssueData
