@@ -130,6 +130,9 @@ namespace Decos.Fixi.Http
     /// <param name="value">The value of the entry to add.</param>
     public QueryStringParameterCollection Add(string name, object value)
     {
+      if (value is string)
+        return Add(name, (string)value);
+
       Add(name, value, CultureInfo.InvariantCulture);
       return this;
     }
@@ -149,7 +152,7 @@ namespace Decos.Fixi.Http
     /// </remarks>
     public virtual QueryStringParameterCollection Add(string name, object value, IFormatProvider provider)
     {
-      if (value is IEnumerable)
+      if (value is IEnumerable && !(value is string))
       {
         foreach (var item in (IEnumerable)value)
           Add(name, Convert.ToString(item, provider));

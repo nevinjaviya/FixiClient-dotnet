@@ -208,6 +208,15 @@ namespace Decos.Fixi.Tests
     }
 
     [TestMethod]
+    public async Task NoIssuesAreReturnedWhenSearchingOnRandomGuid()
+    {
+      var searchString = $"{Guid.NewGuid()}";
+      var issues = await FixiClient.Issues.FindAsync(q: searchString);
+
+      Assert.AreEqual(0, issues.Count);
+    }
+
+    [TestMethod]
     public async Task SomeIssuesHaveUserDetails()
     {
       var issues = await FixiClient.Issues.FindAsync();
