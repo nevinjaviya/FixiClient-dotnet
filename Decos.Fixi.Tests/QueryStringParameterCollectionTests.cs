@@ -80,6 +80,16 @@ namespace Decos.Fixi.Tests
     }
 
     [TestMethod]
+    public void QueryStringParameterCollectionDoesNotInterpretStringsAsACollectionOfCharacters()
+    {
+      const string value = "12345";
+      var collection = QueryStringParameterCollection.FromObject(new { a = value });
+
+      var result = collection.Collection.GetValues("a");
+      CollectionAssert.AreEquivalent(new string[1] { value }, result);
+    }
+
+    [TestMethod]
     public void QueryStringParameterCollectionAddsMultipleValuesForEnumerableTypes()
     {
       var collection = new QueryStringParameterCollection();
