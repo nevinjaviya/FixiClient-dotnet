@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fixi API client library for .NET</description>
-    <releaseNotes>Fixed issue where string parameters added a query string parameter for every character in the string.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
+    <releaseNotes>Added `isManaged` and `hasRegion` parameters to several issue methods.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
     <tags>Decos JOIN Fixi Client</tags>
   </metadata>
 </package>
