@@ -90,6 +90,12 @@ namespace Decos.Fixi
     public bool HasComments { get; set; }
 
     /// <summary>
+    /// Gets or sets the new publicly visible identifier for the issue, or a null
+    /// reference if the public identifier has not changed.
+    /// </summary>
+    public string ID { get; set; }
+
+    /// <summary>
     /// Gets or sets the location of the issue.
     /// </summary>
     public Point Location { get; set; }
@@ -113,12 +119,6 @@ namespace Decos.Fixi
     /// without any registered regions or if the region is not managed by an organization.
     /// </summary>
     public string OrganizationName { get; set; }
-
-    /// <summary>
-    /// Gets or sets the new publicly visible identifier for the issue, or a null
-    /// reference if the public identifier has not changed.
-    /// </summary>
-    public string ID { get; set; }
 
     /// <summary>
     /// Gets or sets the short name of the region in which the issue was
@@ -153,6 +153,14 @@ namespace Decos.Fixi
     /// reference if the issue has not been assigned to a team.
     /// </summary>
     public Team Team { get; set; }
+
+    /// <summary>
+    /// Gets or sets the user that reported the issue, or a null reference if the
+    /// issue was reported without a user account. This is typically the same as
+    /// <see cref="CreatedBy"/>, except in cases where the issue was created by
+    /// someone else and later re-assigned.
+    /// </summary>
+    public User User { get; set; }
 
     /// <summary>
     /// Gets or sets a value that determines who can see the issue.

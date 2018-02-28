@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertExtensions.cs" />
-    <Compile Include="Configuration.cs" />
     <Compile Include="FixiClientTest.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IssuesApiTests.cs" />

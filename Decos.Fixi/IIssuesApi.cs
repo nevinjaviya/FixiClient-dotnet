@@ -31,6 +31,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     Task DeleteIssueAsync(
         string id,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -186,6 +187,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the issue with the specified ID.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     Task<Issue> GetAsync(
         string id,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -385,6 +387,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     Task<Issue> UpdateAsync(
         string id,
         IssueData issueData,

@@ -124,8 +124,8 @@ namespace Decos.Fixi.Tests
     [TestMethod]
     public async Task CreatedIssueCanBeFoundUpdatedAndDeleted()
     {
-      var regionName = Configuration.Parameter("region") ?? "decos";
-      var categoryName = Configuration.Parameter("category");
+      var regionName = Parameter("region") ?? "decos";
+      var categoryName = Parameter("category");
 
 
       var newIssue = await FixiClient.Issues.CreateAsync(new IssueData
@@ -157,6 +157,61 @@ namespace Decos.Fixi.Tests
       Assert.AreEqual(DateTime.Today, updatedIssue.Modified.Value.Date);
 
       await FixiClient.Issues.DeleteIssueAsync(updatedIssue.ID);
+    }
+
+    [TestMethod]
+    public async Task GetIssueFailsWithoutID()
+    {
+      try
+      {
+        await FixiClient.Issues.GetAsync(null);
+      }
+      catch (ArgumentNullException ex)
+      {
+        var methodInfo = FixiClient.Issues.GetType().GetMethod(nameof(IssuesApi.GetAsync));
+        var idParameter = methodInfo.GetParameters()[0].Name;
+        if (ex.ParamName != idParameter)
+          throw new AssertFailedException($"The name of the parameter that caused the ArgumentNullExpection does not match. Expected: <{idParameter}>. Actual: <{ex.ParamName}>.", ex);
+      }
+    }
+
+    [TestMethod]
+    public async Task DeleteIssueFailsWithoutID()
+    {
+      try
+      {
+        await FixiClient.Issues.DeleteIssueAsync(null);
+      }
+      catch (ArgumentNullException ex)
+      {
+        var methodInfo = FixiClient.Issues.GetType().GetMethod(nameof(IssuesApi.DeleteIssueAsync));
+        var idParameter = methodInfo.GetParameters()[0].Name;
+        if (ex.ParamName != idParameter)
+          throw new AssertFailedException($"The name of the parameter that caused the ArgumentNullExpection does not match. Expected: <{idParameter}>. Actual: <{ex.ParamName}>.", ex);
+      }
+    }
+
+    [TestMethod]
+    public async Task UpdateIssueFailsWithoutID()
+    {
+      try
+      {
+        await FixiClient.Issues.UpdateAsync(null, new IssueData());
+      }
+      catch (ArgumentNullException ex)
+      {
+        var methodInfo = FixiClient.Issues.GetType().GetMethod(nameof(IssuesApi.DeleteIssueAsync));
+        var idParameter = methodInfo.GetParameters()[0].Name;
+        if (ex.ParamName != idParameter)
+          throw new AssertFailedException($"The name of the parameter that caused the ArgumentNullExpection does not match. Expected: <{idParameter}>. Actual: <{ex.ParamName}>.", ex);
+      }
+    }
+
+    [TestMethod]
+    public async Task SomeIssuesHaveUserDetails()
+    {
+      var issues = await FixiClient.Issues.FindAsync();
+      Assert.That.Any(issues.Results, x => x.User != null);
     }
   }
 }
