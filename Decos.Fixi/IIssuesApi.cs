@@ -31,7 +31,9 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that represents the asynchronous operation.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="id"/> is <c>null</c>.
+    /// </exception>
     Task DeleteIssueAsync(
         string id,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -64,6 +66,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be included.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
@@ -77,6 +86,8 @@ namespace Decos.Fixi
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -111,6 +122,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be included.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
@@ -125,6 +143,8 @@ namespace Decos.Fixi
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -155,6 +175,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -168,16 +195,18 @@ namespace Decos.Fixi
     /// </param>
     /// <returns>A task that returns a single page of issues.</returns>
     Task<ListPage<IssueListItem>> FindAsync(
-      string q = null,
-      bool searchPrivateInfo = false,
-      string reportedBy = null,
-      string assignedTo = null,
-      string[] category = null,
-      Status[] status = null,
-      DateTimeOffset? from = null,
-      DateTimeOffset? to = null,
-      int page = 1, int count = 20,
-      CancellationToken cancellationToken = default(CancellationToken));
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
+        int page = 1, int count = 20,
+        CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns the issue with the specified ID.
@@ -187,7 +216,9 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the issue with the specified ID.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="id"/> is <c>null</c>.
+    /// </exception>
     Task<Issue> GetAsync(
         string id,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -239,6 +270,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -260,6 +298,8 @@ namespace Decos.Fixi
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         int page = 1,
         int count = 200,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -295,6 +335,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="sort">The sorting order.</param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
@@ -311,21 +358,23 @@ namespace Decos.Fixi
     /// A task that returns a list of issues near the specified location.
     /// </returns>
     Task<ListPage<IssueListItem>> GetNearbyIssuesAsync(
-      double latitude,
-      double longitude,
-      double radius,
-      string q = null,
-      bool searchPrivateInfo = false,
-      string reportedBy = null,
-      string assignedTo = null,
-      string[] category = null,
-      Status[] status = null,
-      DateTimeOffset? from = null,
-      DateTimeOffset? to = null,
-      SortOrder sort = SortOrder.Default,
-      int page = 1,
-      int count = 20,
-      CancellationToken cancellationToken = default(CancellationToken));
+        double latitude,
+        double longitude,
+        double radius,
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
+        SortOrder sort = SortOrder.Default,
+        int page = 1,
+        int count = 20,
+        CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns a list of issues assigned to the logged-in user's teams.
@@ -351,6 +400,13 @@ namespace Decos.Fixi
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -374,6 +430,8 @@ namespace Decos.Fixi
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         int page = 1,
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -387,7 +445,9 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated issue.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="id"/> is <c>null</c>.
+    /// </exception>
     Task<Issue> UpdateAsync(
         string id,
         IssueData issueData,

@@ -80,6 +80,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be included.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
@@ -93,9 +100,11 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { q, reportedBy, assignedTo, category, status, from, to };
+      var args = new { q, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion };
       return PostToStreamAsync("/issues/exportTeam?api-version=2.0", args, destination, cancellationToken);
     }
 
@@ -131,6 +140,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be included.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="cancellationToken">
     /// A token to monitor for cancellation requests.
     /// </param>
@@ -145,9 +161,11 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to };
+      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion };
       return PostToStreamAsync("/issues/export?api-version=2.0", args, destination, cancellationToken);
     }
 
@@ -179,6 +197,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -200,11 +225,13 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         int page = 1,
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, page, count };
+      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, page, count };
       return GetAsync<ListPage<IssueListItem>>("/issues?api-version=2.0", args, cancellationToken);
     }
 
@@ -273,6 +300,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -294,11 +328,13 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         int page = 1,
         int count = 200,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { north, east, south, west, category, status, from, to, page, count };
+      var args = new { north, east, south, west, category, status, from, to, isManaged, hasRegion, page, count };
       return GetAsync<ListPage<IssueMapListItem>>("/issues/map?api-version=2.0", args, cancellationToken);
     }
 
@@ -333,6 +369,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="sort">The sorting order.</param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
@@ -360,12 +403,14 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         SortOrder sort = SortOrder.Default,
         int page = 1,
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { latitude, longitude, radius, q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, sort, page, count };
+      var args = new { latitude, longitude, radius, q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, sort, page, count };
       return GetAsync<ListPage<IssueListItem>>("/issues/nearby?api-version=2.0", args, cancellationToken);
     }
 
@@ -393,6 +438,13 @@ namespace Decos.Fixi.Http
     /// <param name="to">
     /// If specified, only issues created on or before this date will be returned.
     /// </param>
+    /// <param name="isManaged">
+    /// If specified, filters issues based on whether the associated region is
+    /// managed by an organization.
+    /// </param>
+    /// <param name="hasRegion">
+    /// If specified, filters issues based on whether a region is associated.
+    /// </param>
     /// <param name="page">
     /// An optional non-zero positive integer indicating the number of the page
     /// to retrieve.
@@ -416,11 +468,13 @@ namespace Decos.Fixi.Http
         Status[] status = null,
         DateTimeOffset? from = null,
         DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
         int page = 1,
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { q, reportedBy, assignedTo, category, status, from, to, page, count };
+      var args = new { q, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, page, count };
       return GetAsync<ListPage<IssueListItem>>("/issues/team?api-version=2.0", args, cancellationToken);
     }
 
