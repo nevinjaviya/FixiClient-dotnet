@@ -13,14 +13,9 @@ namespace Decos.Fixi
     IAttachmentsApi Attachments { get; }
 
     /// <summary>
-    /// Gets a reference to the regions API.
+    /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
     /// </summary>
-    IRegionsApi Regions { get; }
-
-    /// <summary>
-    /// Gets a reference to the teams API.
-    /// </summary>
-    ITeamsApi Teams { get; }
+    HttpClient HttpClient { get; }
 
     /// <summary>
     /// Gets a reference to the issues API.
@@ -33,8 +28,18 @@ namespace Decos.Fixi
     IOrganizationsApi Organizations { get; }
 
     /// <summary>
-    /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
+    /// Gets a reference to the regions API.
     /// </summary>
-    HttpClient HttpClient { get; }
+    IRegionsApi Regions { get; }
+
+    /// <summary>
+    /// Gets a reference to the teams API.
+    /// </summary>
+    ITeamsApi Teams { get; }
+
+    /// <summary>
+    /// Gets a reference to the users API.
+    /// </summary>
+    IUsersApi Users { get; }
   }
 }

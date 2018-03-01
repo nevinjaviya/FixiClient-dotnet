@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fixi API client library for .NET</description>
-    <releaseNotes>Added `isManaged` and `hasRegion` parameters to several issue methods.</releaseNotes>
+    <releaseNotes>Added two methods for interacting with the current user.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>Decos JOIN Fixi Client</tags>
   </metadata>
