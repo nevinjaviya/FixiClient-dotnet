@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
 using System.Net.Http;
 using System.Reflection;
@@ -17,10 +14,11 @@ namespace Decos.Fixi
     private readonly string apiSecret;
     private readonly Lazy<IAttachmentsApi> attachmentsApi;
     private readonly Lazy<HttpClient> httpClient;
-    private readonly Lazy<IRegionsApi> regionsApi;
-    private readonly Lazy<ITeamsApi> teamsApi;
     private readonly Lazy<IIssuesApi> issuesApi;
     private readonly Lazy<IOrganizationsApi> organizationsApi;
+    private readonly Lazy<IRegionsApi> regionsApi;
+    private readonly Lazy<ITeamsApi> teamsApi;
+    private readonly Lazy<IUsersApi> usersApi;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FixiClient"/> class with the
@@ -41,6 +39,7 @@ namespace Decos.Fixi
       regionsApi = new Lazy<IRegionsApi>(CreateApiInstance<IRegionsApi>);
       issuesApi = new Lazy<IIssuesApi>(() => new IssuesApi(HttpClient));
       organizationsApi = new Lazy<IOrganizationsApi>(CreateApiInstance<IOrganizationsApi>);
+      usersApi = new Lazy<IUsersApi>(() => new UsersApi(HttpClient));
     }
 
     /// <summary>
@@ -59,14 +58,9 @@ namespace Decos.Fixi
     public Uri BaseAddress { get; }
 
     /// <summary>
-    /// Gets a reference to the regions API.
+    /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
     /// </summary>
-    public IRegionsApi Regions => regionsApi.Value;
-
-    /// <summary>
-    /// Gets a reference to the teams API.
-    /// </summary>
-    public ITeamsApi Teams => teamsApi.Value;
+    public HttpClient HttpClient => httpClient.Value;
 
     /// <summary>
     /// Gets a reference to the issues API.
@@ -79,9 +73,19 @@ namespace Decos.Fixi
     public IOrganizationsApi Organizations => organizationsApi.Value;
 
     /// <summary>
-    /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
+    /// Gets a reference to the regions API.
     /// </summary>
-    public HttpClient HttpClient => httpClient.Value;
+    public IRegionsApi Regions => regionsApi.Value;
+
+    /// <summary>
+    /// Gets a reference to the teams API.
+    /// </summary>
+    public ITeamsApi Teams => teamsApi.Value;
+
+    /// <summary>
+    /// Gets a reference to the users API.
+    /// </summary>
+    public IUsersApi Users => usersApi.Value;
 
     private Refit.RefitSettings RefitSettings
     {
@@ -110,23 +114,6 @@ namespace Decos.Fixi
     }
 
     /// <summary>
-    /// Releases the unmanaged resources used by the <see cref="FixiClient"/> and
-    /// optionally disposes of the managed resources.
-    /// </summary>
-    /// <param name="disposing">
-    /// <c>true</c> to release both managed and unmanaged resources; <c>false</c>
-    /// to releases only unmanaged resources.
-    /// </param>
-    protected virtual void Dispose(bool disposing)
-    {
-      if (disposing)
-      {
-        if (httpClient.IsValueCreated)
-          httpClient.Value.Dispose();
-      }
-    }
-
-    /// <summary>
     /// Creates a new instance of an API.
     /// </summary>
     /// <typeparam name="T">The type of interface that defines the API.</typeparam>
@@ -148,6 +135,23 @@ namespace Decos.Fixi
       {
         BaseAddress = BaseAddress
       };
+    }
+
+    /// <summary>
+    /// Releases the unmanaged resources used by the <see cref="FixiClient"/> and
+    /// optionally disposes of the managed resources.
+    /// </summary>
+    /// <param name="disposing">
+    /// <c>true</c> to release both managed and unmanaged resources; <c>false</c>
+    /// to releases only unmanaged resources.
+    /// </param>
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        if (httpClient.IsValueCreated)
+          httpClient.Value.Dispose();
+      }
     }
 
     /// <summary>
