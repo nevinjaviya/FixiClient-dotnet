@@ -14,6 +14,11 @@ namespace Decos.Fixi
     public string Address { get; set; }
 
     /// <summary>
+    /// Gets or sets the object ID of the associated Azure AD user account.
+    /// </summary>
+    public Guid? AzureADObjectId { get; set; }
+
+    /// <summary>
     /// Gets or sets the Decos IDP User ID of the person, or a null reference if
     /// the person does not use a Decos IDP account.
     /// </summary>
