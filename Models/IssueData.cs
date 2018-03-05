@@ -84,7 +84,7 @@ namespace Decos.Fixi
     /// Gets or sets a value that indicates the current status of the issue.
     /// </summary>
     [EnumDataType(typeof(Status))]
-    public Status Status { get; set; }
+    public Status? Status { get; set; }
 
     /// <summary>
     /// Gets or sets the short name of the team to which the issue is assigned.
@@ -95,7 +95,7 @@ namespace Decos.Fixi
     /// Gets or sets a value that determines who can see the issue.
     /// </summary>
     [EnumDataType(typeof(Visibility))]
-    public Visibility Visibility { get; set; }
+    public Visibility? Visibility { get; set; }
 
     /// <summary>
     /// Returns a string representing the issue data.
