@@ -13,6 +13,11 @@ namespace Decos.Fixi
     IAttachmentsApi Attachments { get; }
 
     /// <summary>
+    /// Gets a reference to the categories API.
+    /// </summary>
+    ICategoriesApi Categories { get; }
+
+    /// <summary>
     /// Gets an <see cref="HttpClient"/> used to send HTTP requests.
     /// </summary>
     HttpClient HttpClient { get; }

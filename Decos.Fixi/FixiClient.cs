@@ -13,6 +13,7 @@ namespace Decos.Fixi
   {
     private readonly string apiSecret;
     private readonly Lazy<IAttachmentsApi> attachmentsApi;
+    private readonly Lazy<ICategoriesApi> categoriesApi;
     private readonly Lazy<HttpClient> httpClient;
     private readonly Lazy<IIssuesApi> issuesApi;
     private readonly Lazy<IOrganizationsApi> organizationsApi;
@@ -36,10 +37,11 @@ namespace Decos.Fixi
       httpClient = new Lazy<HttpClient>(CreateHttpClient);
       attachmentsApi = new Lazy<IAttachmentsApi>(CreateApiInstance<IAttachmentsApi>);
       teamsApi = new Lazy<ITeamsApi>(CreateApiInstance<ITeamsApi>);
-      regionsApi = new Lazy<IRegionsApi>(CreateApiInstance<IRegionsApi>);
+      regionsApi = new Lazy<IRegionsApi>(() => new RegionsApi(HttpClient));
       issuesApi = new Lazy<IIssuesApi>(() => new IssuesApi(HttpClient));
       organizationsApi = new Lazy<IOrganizationsApi>(CreateApiInstance<IOrganizationsApi>);
       usersApi = new Lazy<IUsersApi>(() => new UsersApi(HttpClient));
+      categoriesApi = new Lazy<ICategoriesApi>(() => new CategoriesApi(HttpClient));
     }
 
     /// <summary>
@@ -56,6 +58,11 @@ namespace Decos.Fixi
     /// Gets the base address of the Fixi APIs.
     /// </summary>
     public Uri BaseAddress { get; }
+
+    /// <summary>
+    /// Gets a reference to the categories API.
+    /// </summary>
+    public ICategoriesApi Categories => categoriesApi.Value;
 
     /// <summary>
     /// Gets an <see cref="HttpClient"/> used to send HTTP requests.

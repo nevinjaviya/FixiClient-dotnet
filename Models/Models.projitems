@@ -24,6 +24,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Point.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Polygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Region.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegionData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Team.cs" />
