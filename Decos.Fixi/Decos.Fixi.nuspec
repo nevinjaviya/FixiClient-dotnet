@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fixi API client library for .NET</description>
-    <releaseNotes>Make Status and Visibility nullable to prevent accidental changes.</releaseNotes>
+    <releaseNotes>Added most region-related methods.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>Decos JOIN Fixi Client</tags>
   </metadata>

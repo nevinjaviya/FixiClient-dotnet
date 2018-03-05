@@ -1,14 +1,24 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Http
 {
   /// <summary>
-  /// Defines the methods available in the regions API.
+  /// Represents a RESTful API client to manage regions in Fixi.
   /// </summary>
-  public interface IRegionsApi
+  public class RegionsApi : RestApi, IRegionsApi
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RegionsApi"/> class that
+    /// uses the specified <see cref="HttpClient"/>.
+    /// </summary>
+    /// <param name="httpClient">An <see cref="HttpClient"/> for sending requests.</param>
+    public RegionsApi(HttpClient httpClient) : base(httpClient)
+    {
+    }
+
     /// <summary>
     /// Adds a new region.
     /// </summary>
@@ -17,7 +27,10 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the created region.</returns>
-    Task<RegionResponse> AddAsync(RegionData data, CancellationToken cancellationToken);
+    public Task<RegionResponse> AddAsync(RegionData data, CancellationToken cancellationToken)
+    {
+      return PostAsync<RegionData, RegionResponse>("/regions?api-version=2.0", data, cancellationToken);
+    }
 
     /// <summary>
     /// Returns a list of regions at the specified location.
@@ -36,7 +49,11 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of regions.</returns>
-    Task<ListPage<RegionResponse>> AtLocationAsync(double latitude, double longitude, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+    public Task<ListPage<RegionResponse>> AtLocationAsync(double latitude, double longitude, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { latitude, longitude, page, count };
+      return GetAsync<ListPage<RegionResponse>>("/regions/atlocation?api-version=2.0", args, cancellationToken);
+    }
 
     /// <summary>
     /// Returns a list of regions, ordered by name.
@@ -58,7 +75,11 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of regions.</returns>
-    Task<ListPage<RegionResponse>> FindAsync(bool? all = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+    public Task<ListPage<RegionResponse>> FindAsync(bool? all = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
+    {
+      var args = new { all, page, count };
+      return GetAsync<ListPage<RegionResponse>>("/regions?api-version=2.0", args, cancellationToken);
+    }
 
     /// <summary>
     /// Returns the region with the specified short name.
@@ -68,7 +89,10 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the specified region.</returns>
-    Task<RegionResponse> GetAsync(string region, CancellationToken cancellationToken);
+    public Task<RegionResponse> GetAsync(string region, CancellationToken cancellationToken)
+    {
+      return GetAsync<RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=2.0", cancellationToken);
+    }
 
     /// <summary>
     /// Updates an existing region.
@@ -79,6 +103,9 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated region.</returns>
-    Task<RegionResponse> UpdateAsync(string region, RegionData data, CancellationToken cancellationToken);
+    public Task<RegionResponse> UpdateAsync(string region, RegionData data, CancellationToken cancellationToken)
+    {
+      return PatchAsync<RegionData, RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=2.0", data, cancellationToken);
+    }
   }
 }
