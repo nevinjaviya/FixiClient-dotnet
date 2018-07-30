@@ -215,12 +215,5 @@ namespace Decos.Fixi.Tests
 
       Assert.AreEqual(0, issues.Count);
     }
-
-    [TestMethod]
-    public async Task SomeIssuesHaveUserDetails()
-    {
-      var issues = await FixiClient.Issues.FindAsync();
-      Assert.That.Any(issues.Results, x => x.User != null);
-    }
   }
 }
