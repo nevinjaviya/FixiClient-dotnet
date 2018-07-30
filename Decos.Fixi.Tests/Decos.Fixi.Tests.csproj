@@ -55,6 +55,7 @@
     <Compile Include="IssuesApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringParameterCollectionTests.cs" />
+    <Compile Include="RegionsApiTests.cs" />
     <Compile Include="UriUtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>

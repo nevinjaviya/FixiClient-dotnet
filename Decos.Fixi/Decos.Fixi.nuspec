@@ -4,13 +4,13 @@
     <id>Decos.Fixi.Client</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>Ruben Verdoes</authors>
-    <owners>r.verdoes</owners>
+    <authors>Laura Verdoes</authors>
+    <owners>l.verdoes</owners>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/DecosInformationSolutions/FixiClient-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Fixi API client library for .NET</description>
-    <releaseNotes>Added most region-related methods.</releaseNotes>
+    <description>Fixi API client library for .NET Framework.</description>
+    <releaseNotes>Improved regions API support.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>Decos JOIN Fixi Client</tags>
   </metadata>

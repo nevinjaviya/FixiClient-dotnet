@@ -3,24 +3,13 @@
 namespace Decos.Fixi
 {
   /// <summary>
-  /// Represents a polygon.
+  /// Represents the accepted formats for updating a region's polygon.
   /// </summary>
   public class Polygon
   {
     /// <summary>
-    /// Gets a value that indicates the total area covered by the polygon in
-    /// square meters.
-    /// </summary>
-    public double? Area { get; set; }
-
-    /// <summary>
-    /// Gets a polyline-encoded string representing the polygon value.
-    /// </summary>
-    public string EncodedPolyline { get; set; }
-
-    /// <summary>
-    /// Sets a string containing the polygon value as a space-separated list of
-    /// longitude and latitude coordinates (original Fixi format).
+    /// Gets or sets a string containing the polygon value as a space-separated
+    /// list of longitude and latitude coordinates (original Fixi format).
     /// </summary>
     public string FixiString { get; set; }
 
