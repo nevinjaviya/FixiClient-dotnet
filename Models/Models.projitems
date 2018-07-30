@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CannedResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CannedResponseData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Issue.cs" />

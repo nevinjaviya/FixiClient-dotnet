@@ -61,6 +61,26 @@ namespace Decos.Fixi.Http
     }
 
     /// <summary>
+    /// Sends a DELETE request to the specified URI and deserializes the response.
+    /// </summary>
+    /// <typeparam name="TResult">The type of response.</typeparam>
+    /// <param name="requestUri">The URI to send a request to.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>
+    /// A task that returns an object instance of the specified type.
+    /// </returns>
+    /// <exception cref="ApiException">An error occurred the request.</exception>
+    /// <exception cref="InvalidResponseFormatException">
+    /// An error occurred during deserialization of the response.
+    /// </exception>
+    protected Task<TResult> DeleteAsync<TResult>(string requestUri, CancellationToken cancellationToken)
+    {
+      return SendAsync<TResult>(HttpMethod.Delete, requestUri, null, cancellationToken);
+    }
+
+    /// <summary>
     /// Sends a GET request to the specified URI.
     /// </summary>
     /// <typeparam name="TResult">The type of object to read.</typeparam>

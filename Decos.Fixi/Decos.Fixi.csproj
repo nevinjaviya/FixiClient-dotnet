@@ -62,10 +62,12 @@
     <Compile Include="FixiClient.cs" />
     <Compile Include="HmacAuthenticationMessageHandler.cs" />
     <Compile Include="Http\ApiException.cs" />
+    <Compile Include="Http\CannedResponsesApi.cs" />
     <Compile Include="Http\CategoriesApi.cs" />
     <Compile Include="Http\HttpError.cs" />
     <Compile Include="Http\RegionsApi.cs" />
     <Compile Include="Http\UsersApi.cs" />
+    <Compile Include="ICannedResponsesApi.cs" />
     <Compile Include="ICategoriesApi.cs" />
     <Compile Include="IUsersApi.cs" />
     <Compile Include="IAttachmentsApi.cs" />
