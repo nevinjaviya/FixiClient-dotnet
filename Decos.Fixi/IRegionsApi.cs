@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -61,6 +62,24 @@ namespace Decos.Fixi
     Task<ListPage<RegionResponse>> FindAsync(bool? all = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
+    /// Returns a list of regions for the specified organization.
+    /// </summary>
+    /// <param name="organization">The short name of the organization.</param>
+    /// <param name="page">
+    /// An optional non-zero positive integer indicating the number of the page
+    /// to retrieve.
+    /// </param>
+    /// <param name="count">
+    /// An optional non-zero positive integer indicating the number of results to
+    /// return per page.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns a single page of regions.</returns>
+    Task<ListPage<RegionResponse>> FindAsync(string organization, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+
+    /// <summary>
     /// Returns the region with the specified short name.
     /// </summary>
     /// <param name="region">The short name of the region.</param>
@@ -69,6 +88,52 @@ namespace Decos.Fixi
     /// </param>
     /// <returns>A task that returns the specified region.</returns>
     Task<RegionResponse> GetAsync(string region, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Returns the geometry data for a region as polyline-encoded strings.
+    /// </summary>
+    /// <param name="region">The short name of the region.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns a collection of <see cref="EncodedPolygon"/> objects.</returns>
+    Task<IEnumerable<EncodedPolygon>> GetEncodedGeometryAsync(string region, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Returns the geometry data for a region as collections of points.
+    /// </summary>
+    /// <param name="region">The short name of the region.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>A task that returns a collection of <see cref="RawPolygon"/> objects.</returns>
+    Task<IEnumerable<RawPolygon>> GetRawGeometryAsync(string region, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Returns the geometry data for a region as well-known binary (WKB).
+    /// </summary>
+    /// <param name="region">The short name of the region.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>
+    /// A task that returns an array of bytes that contains the well-known text
+    /// binary of <paramref name="region"/>.
+    /// </returns>
+    Task<byte[]> GetWellKnownBinaryAsync(string region, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Returns the geometry data for a region as well-known text (WKT).
+    /// </summary>
+    /// <param name="region">The short name of the region.</param>
+    /// <param name="cancellationToken">
+    /// A token to monitor for cancellation requests.
+    /// </param>
+    /// <returns>
+    /// A task that returns a string that contains the well-known text
+    /// representation of <paramref name="region"/>.
+    /// </returns>
+    Task<string> GetWellKnownTextAsync(string region, CancellationToken cancellationToken);
 
     /// <summary>
     /// Updates an existing region.

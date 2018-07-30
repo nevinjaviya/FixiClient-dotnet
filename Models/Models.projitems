@@ -13,7 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EncodedPolygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPolygon{T}.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Issue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IssueData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IssueListItem.cs" />
@@ -22,8 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Organization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Person.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Point.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PointCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Polygon.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Region.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RawPolygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />

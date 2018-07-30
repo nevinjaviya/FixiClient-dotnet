@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Decos.Fixi.Tests
@@ -47,6 +48,41 @@ namespace Decos.Fixi.Tests
 
       if (!collection.Any(predicate))
         throw new AssertFailedException($"The collection does not contain any elements that satisfy the condition. {message}");
+    }
+
+    /// <summary>
+    /// Test whether a collection contains any elements.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in <paramref name="collection"/>.</typeparam>
+    /// <param name="collection">The collection to test.</param>
+    /// <param name="message">
+    /// A message to include in the exception that occurs when <paramref
+    /// name="collection"/> is empty.
+    /// </param>
+    public static void ShouldNotBeEmpty<T>(this IEnumerable<T> collection, string message = null)
+    {
+      if (collection == null)
+        throw new AssertFailedException($"The collection is null. {message}");
+
+      if (!collection.Any())
+        throw new AssertFailedException($"The collection does not contain any elements. {message}");
+    }
+
+    /// <summary>
+    /// Test whether a string is not empty.
+    /// </summary>
+    /// <param name="value">The string to test.</param>
+    /// <param name="message">
+    /// A message to include in the exception that occurs when <paramref
+    /// name="value"/> is empty.
+    /// </param>
+    public static void ShouldNotBeEmpty(this string value, string message = null)
+    {
+      if (value == null)
+        throw new AssertFailedException($"The string is null. {message}");
+
+      if (value.Length == 0)
+        throw new AssertFailedException($"The string is empty. {message}");
     }
   }
 }
