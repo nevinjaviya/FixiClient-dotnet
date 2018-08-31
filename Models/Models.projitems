@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Subcategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EncodedPolygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handler.cs" />
@@ -31,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)RegionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Team.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserData.cs" />
