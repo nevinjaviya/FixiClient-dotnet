@@ -29,7 +29,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of categories.</returns>
-    Task<ListPage<Category>> FindAsync(string region, bool? includeInactive = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+    Task<ListPage<CategoryResponse>> FindAsync(string region, bool? includeInactive = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns the specified category in a region.
@@ -40,7 +40,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a specified category.</returns>
-    Task<Category> GetAsync(string region, string category, CancellationToken cancellationToken = default(CancellationToken));
+    Task<CategoryResponse> GetAsync(string region, string category, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Creates a new category and adds it to the region.
@@ -51,7 +51,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a created category.</returns>
-    Task<Category> AddAsync(string region, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
+    Task<CategoryResponse> AddAsync(string region, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Updates an existing category.
@@ -63,7 +63,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated category.</returns>
-    Task<Category> UpdateAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
+    Task<CategoryResponse> UpdateAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns a list of subcategories in a category, ordered by priority and name.
@@ -86,7 +86,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of subcategories.</returns>
-    Task<ListPage<Subcategory>> FindAsync(string region, string category, bool includeInactive = false, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
+    Task<ListPage<SubcategoryResponse>> FindAsync(string region, string category, bool includeInactive = false, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Returns the specified subcategory in a category.
@@ -98,7 +98,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a specified subcategory.</returns>
-    Task<Subcategory> GetAsync(string region, string category, string id, CancellationToken cancellationToken = default(CancellationToken));
+    Task<SubcategoryResponse> GetAsync(string region, string category, string id, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Creates a new subcategory.
@@ -110,7 +110,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a created subcategory.</returns>
-    Task<Subcategory> AddAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
+    Task<SubcategoryResponse> AddAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
     /// Updates an existing subcategory.
@@ -123,6 +123,6 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated subcategory.</returns>
-    Task<Subcategory> UpdateAsync(string region, string category, string id, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
+    Task<SubcategoryResponse> UpdateAsync(string region, string category, string id, CategoryData data, CancellationToken cancellationToken = default(CancellationToken));
   }
 }

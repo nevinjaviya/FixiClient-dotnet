@@ -3,7 +3,7 @@
   /// <summary>
   /// Represents a category in the response.
   /// </summary>
-  public class Subcategory : Category
+  public class SubcategoryResponse : Category
   {
     /// <summary>
     /// The short name of the main category.

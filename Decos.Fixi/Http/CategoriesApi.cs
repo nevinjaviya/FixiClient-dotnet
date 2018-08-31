@@ -41,10 +41,10 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of categories.</returns>
-    public Task<ListPage<Category>> FindAsync(string region, bool? includeInactive = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<ListPage<CategoryResponse>> FindAsync(string region, bool? includeInactive = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { includeInactive, page, count };
-      return GetAsync<ListPage<Category>>($"/regions/{Uri.EscapeDataString(region)}/categories?api-version=2.0", args, cancellationToken);
+      return GetAsync<ListPage<CategoryResponse>>($"/regions/{Uri.EscapeDataString(region)}/categories?api-version=2.0", args, cancellationToken);
     }
 
     /// <summary>
@@ -56,9 +56,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a specified category.</returns>
-    public Task<Category> GetAsync(string region, string category, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<CategoryResponse> GetAsync(string region, string category, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return GetAsync<Category>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}?api-version=2.0", cancellationToken);
+      return GetAsync<CategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}?api-version=2.0", cancellationToken);
     }
 
     /// <summary>
@@ -70,9 +70,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a created category.</returns>
-    public Task<Category> AddAsync(string region, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<CategoryResponse> AddAsync(string region, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return PostAsync<CategoryData, Category>($"/regions/{Uri.EscapeDataString(region)}/categories?api-version=2.0", data, cancellationToken);
+      return PostAsync<CategoryData, CategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories?api-version=2.0", data, cancellationToken);
     }
 
     /// <summary>
@@ -85,9 +85,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated category.</returns>
-    public Task<Category> UpdateAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<CategoryResponse> UpdateAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return PatchAsync<CategoryData, Category>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}?api-version=2.0", data, cancellationToken);
+      return PatchAsync<CategoryData, CategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}?api-version=2.0", data, cancellationToken);
     }
 
     /// <summary>
@@ -111,10 +111,10 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a single page of subcategories.</returns>
-    public Task<ListPage<Subcategory>> FindAsync(string region, string category, bool includeInactive = false, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<ListPage<SubcategoryResponse>> FindAsync(string region, string category, bool includeInactive = false, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { includeInactive, page, count };
-      return GetAsync<ListPage<Subcategory>>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories?api-version=2.0", args, cancellationToken);
+      return GetAsync<ListPage<SubcategoryResponse>>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories?api-version=2.0", args, cancellationToken);
     }
 
     /// <summary>
@@ -127,9 +127,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a specified subcategory.</returns>
-    public Task<Subcategory> GetAsync(string region, string category, string id, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<SubcategoryResponse> GetAsync(string region, string category, string id, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return GetAsync<Subcategory>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories/{Uri.EscapeDataString(id)}?api-version=2.0", cancellationToken);
+      return GetAsync<SubcategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories/{Uri.EscapeDataString(id)}?api-version=2.0", cancellationToken);
     }
 
     /// <summary>
@@ -142,9 +142,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns a created subcategory.</returns>
-    public Task<Subcategory> AddAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<SubcategoryResponse> AddAsync(string region, string category, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return PostAsync<CategoryData, Subcategory>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories?api-version=2.0", data, cancellationToken);
+      return PostAsync<CategoryData, SubcategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories?api-version=2.0", data, cancellationToken);
     }
 
     /// <summary>
@@ -158,9 +158,9 @@ namespace Decos.Fixi.Http
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task that returns the updated subcategory.</returns>
-    public Task<Subcategory> UpdateAsync(string region, string category, string id, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
+    public Task<SubcategoryResponse> UpdateAsync(string region, string category, string id, CategoryData data, CancellationToken cancellationToken = default(CancellationToken))
     {
-      return PatchAsync<CategoryData, Subcategory>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories/{Uri.EscapeDataString(id)}?api-version=2.0", data, cancellationToken);
+      return PatchAsync<CategoryData, SubcategoryResponse>($"/regions/{Uri.EscapeDataString(region)}/categories/{Uri.EscapeDataString(category)}/subcategories/{Uri.EscapeDataString(id)}?api-version=2.0", data, cancellationToken);
     }
   }
 }

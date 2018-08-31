@@ -12,7 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Subcategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SubcategoryResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategoryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EncodedPolygon.cs" />
