@@ -67,6 +67,7 @@
     <Compile Include="Http\RegionsApi.cs" />
     <Compile Include="Http\UsersApi.cs" />
     <Compile Include="ICategoriesApi.cs" />
+    <Compile Include="ICannedResponsesApi.cs" />
     <Compile Include="IUsersApi.cs" />
     <Compile Include="IAttachmentsApi.cs" />
     <Compile Include="IFixiClient.cs" />

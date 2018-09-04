@@ -20,6 +20,7 @@ namespace Decos.Fixi
     private readonly Lazy<IRegionsApi> regionsApi;
     private readonly Lazy<ITeamsApi> teamsApi;
     private readonly Lazy<IUsersApi> usersApi;
+    private readonly Lazy<ICannedResponsesApi> cannedResponsesApi;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FixiClient"/> class with the
@@ -42,6 +43,7 @@ namespace Decos.Fixi
       organizationsApi = new Lazy<IOrganizationsApi>(CreateApiInstance<IOrganizationsApi>);
       usersApi = new Lazy<IUsersApi>(() => new UsersApi(HttpClient));
       categoriesApi = new Lazy<ICategoriesApi>(() => new CategoriesApi(HttpClient));
+      cannedResponsesApi = new Lazy<ICannedResponsesApi>(CreateApiInstance<ICannedResponsesApi>);
     }
 
     /// <summary>
@@ -93,6 +95,11 @@ namespace Decos.Fixi
     /// Gets a reference to the users API.
     /// </summary>
     public IUsersApi Users => usersApi.Value;
+
+    /// <summary>
+    /// Gets a reference to the canned responses API.
+    /// </summary>
+    public ICannedResponsesApi CannedResponses => cannedResponsesApi.Value;
 
     private Refit.RefitSettings RefitSettings
     {
