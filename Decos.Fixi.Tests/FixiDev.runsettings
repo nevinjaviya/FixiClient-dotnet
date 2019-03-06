@@ -5,6 +5,6 @@
     <Parameter name="apiKey" value="" />
     <Parameter name="apiSecret" value="" />
     <Parameter name="region" value="decos" />
-    <Parameter name="category" value="fixi" />
+    <Parameter name="category" value="decos-fixi-for-decos" />
   </TestRunParameters>
 </RunSettings>
