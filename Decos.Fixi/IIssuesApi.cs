@@ -199,6 +199,7 @@ namespace Decos.Fixi
         bool searchPrivateInfo = false,
         string reportedBy = null,
         string assignedTo = null,
+        string[] region = null,
         string[] category = null,
         Status[] status = null,
         DateTimeOffset? from = null,

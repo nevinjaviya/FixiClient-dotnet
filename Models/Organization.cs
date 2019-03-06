@@ -61,5 +61,11 @@ namespace Decos.Fixi
     /// organization should be public by default.
     /// </summary>
     public BooleanDefault DefaultVisibility { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value that describes whether the organization supports 
+    /// anonymous issue reports or not.
+    /// </summary>
+    public bool ToReportAnonymous { get; set; }
   }
 }

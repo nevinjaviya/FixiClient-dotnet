@@ -221,6 +221,7 @@ namespace Decos.Fixi.Http
         bool searchPrivateInfo = false,
         string reportedBy = null,
         string assignedTo = null,
+        string[] region = null,
         string[] category = null,
         Status[] status = null,
         DateTimeOffset? from = null,
@@ -231,7 +232,7 @@ namespace Decos.Fixi.Http
         int count = 20,
         CancellationToken cancellationToken = default(CancellationToken))
     {
-      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, page, count };
+      var args = new { q, searchPrivateInfo, reportedBy, assignedTo, region, category, status, from, to, isManaged, hasRegion, page, count };
       return GetAsync<ListPage<IssueListItem>>("/issues?api-version=2.0", args, cancellationToken);
     }
 
