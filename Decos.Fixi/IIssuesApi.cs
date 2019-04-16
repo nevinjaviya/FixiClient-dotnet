@@ -161,6 +161,10 @@ namespace Decos.Fixi
     /// <param name="assignedTo">
     /// Optionally filters the results on handler email address or team short name.
     /// </param>
+    /// <param name="region">
+    /// Optionally filters the results on region short name. This parameter can
+    /// be specified multiple times.
+    /// </param>
     /// <param name="category">
     /// Optionally filters the results on category short name. This parameter can
     /// be specified multiple times.
