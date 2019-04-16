@@ -150,12 +150,17 @@ namespace Decos.Fixi
     public string Team { get; set; }
 
     /// <summary>
-    /// Gets or sets the email address of the user that reported the issue, or a
+    /// Gets or sets the user that reported the issue, or a
     /// null reference if the issue was reported without a user account. This is
     /// typically the same as <see cref="CreatedBy"/>, except in cases where the
     /// issue was created by someone else and later re-assigned.
     /// </summary>
-    public string User { get; set; }
+    public User User { get; set; }
+
+    /// <summary>
+    /// Gets or sets the details of the person that reported the issue.
+    /// </summary>
+    public Person ReportedBy { get; set; }
 
     /// <summary>
     /// Gets or sets a value that determines who can see the issue.
