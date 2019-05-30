@@ -67,5 +67,11 @@ namespace Decos.Fixi
     /// anonymous issue reports or not.
     /// </summary>
     public bool ToReportAnonymous { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value that describes whether atleast one field in issue 
+    /// handle screen is required while handling issue or not.
+    /// </summary>
+    public bool ToValidateIssueHandle { get; set; }
   }
 }
