@@ -19,6 +19,16 @@ namespace Decos.Fixi
     public string EmailAddress { get; set; }
 
     /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public ConnectConfiguration ConnectConfiguration { get; set; }
+
+    /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public string IntegrationConfiguration { get; set; }
+
+    /// <summary>
     /// Gets or sets an integer that identifies the map layer on which the region
     /// is located. Higher values indicate smaller, more specific regions.
     /// </summary>

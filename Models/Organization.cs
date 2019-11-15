@@ -42,6 +42,16 @@ namespace Decos.Fixi
     public string EmailAddress { get; set; }
 
     /// <summary>
+    /// Type of the integration organization communicating.
+    /// </summary>
+    public IntegrationType IntegrationType { get; set; }
+
+    /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public string IntegrationConfiguration { get; set; }
+
+    /// <summary>
     /// Gets or sets the name of the organization.
     /// </summary>
     public string Name { get; set; }

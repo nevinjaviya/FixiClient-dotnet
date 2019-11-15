@@ -8,6 +8,11 @@ namespace Decos.Fixi
   public class RegionResponse
   {
     /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public ConnectConfiguration ConnectConfiguration { get; set; }
+
+    /// <summary>
     /// Gets or sets the point in time the region was created.
     /// </summary>
     public DateTimeOffset? Created { get; set; }

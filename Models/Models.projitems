@@ -16,6 +16,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)CannedResponseData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CannedResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConnectConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SubcategoryResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategoryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
