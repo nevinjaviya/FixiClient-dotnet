@@ -13,6 +13,16 @@ namespace Decos.Fixi
   public class ConnectConfiguration : IntegrationConfiguration
   {
     /// <summary>
+    /// Gets or sets the Connect system ID to use when syncing with JOIN.
+    /// </summary>
+    public string SystemID { get; set; }
+
+    /// <summary>
+    /// Gets or sets the Connect system password to use when syncing with JOIN.
+    /// </summary>
+    public string SystemPassword { get; set; }
+
+    /// <summary>
     /// Gets or sets an identifier of the case type to use when creating new
     /// cases in JOIN.
     /// </summary>

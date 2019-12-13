@@ -45,5 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Visibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZsdmsConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZsdmsService.cs" />
   </ItemGroup>
 </Project>

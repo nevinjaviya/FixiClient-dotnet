@@ -77,5 +77,10 @@ namespace Decos.Fixi
     /// Gets or sets the short name of the region.
     /// </summary>
     public string ShortName { get; set; }
+
+    /// <summary>
+    /// Gets or sets a ZSDMS configuration that is used to sync data with other applications.
+    /// </summary>
+    public ZsdmsConfiguration ZsdmsConfiguration { get; set; }
   }
 }

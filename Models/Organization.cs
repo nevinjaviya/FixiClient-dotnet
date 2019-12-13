@@ -52,6 +52,11 @@ namespace Decos.Fixi
     public string IntegrationConfiguration { get; set; }
 
     /// <summary>
+    /// Gets or sets a ZSDMS configuration that is used to sync data with other applications.
+    /// </summary>
+    public ZsdmsConfiguration ZsdmsConfiguration { get; set; }
+
+    /// <summary>
     /// Gets or sets the name of the organization.
     /// </summary>
     public string Name { get; set; }
