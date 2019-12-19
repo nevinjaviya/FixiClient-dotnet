@@ -43,5 +43,15 @@
     /// Gets or sets the sender organization to use when syncing using ZSDMS.
     /// </summary>
     public string SenderOrganisation { get; set; }
+
+    /// <summary>
+    /// Gets or sets the case type code to use when syncing using ZSDMS.
+    /// </summary>
+    public string CaseTypeCode { get; set; }
+
+    /// <summary>
+    /// Gets or sets the case type description to use when syncing using ZSDMS.
+    /// </summary>
+    public string CaseTypeDescription { get; set; }
   }
 }
