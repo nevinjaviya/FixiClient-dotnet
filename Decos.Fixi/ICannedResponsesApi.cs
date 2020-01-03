@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Decos.Fixi.Models;
 using Refit;
 
 namespace Decos.Fixi
