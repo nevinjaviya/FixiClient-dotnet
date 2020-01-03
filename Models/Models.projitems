@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttachmentFixi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CategoryName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CannedResponseData.cs" />

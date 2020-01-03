@@ -13,7 +13,7 @@ namespace Decos.Fixi.Models
     /// </summary>
     public Issue()
     {
-      Attachments = new HashSet<Attachment>();
+      Attachments = new HashSet<AttachmentFixi>();
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace Decos.Fixi.Models
     /// <summary>
     /// Gets or sets a collection of files attached to the issue.
     /// </summary>
-    public ICollection<Attachment> Attachments { get; set; }
+    public ICollection<AttachmentFixi> Attachments { get; set; }
 
     /// <summary>
     /// Gets or sets the category for which the issue was reported, or a null
