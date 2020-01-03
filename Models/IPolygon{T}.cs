@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a polygon as an exterior ring with zero or more interior rings.

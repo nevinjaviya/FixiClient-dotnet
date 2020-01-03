@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Indicates the default value for a boolean option.

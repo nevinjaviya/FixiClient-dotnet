@@ -1,4 +1,4 @@
-﻿namespace Decos.Fixi
+﻿namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents the modifiable properties of a category.

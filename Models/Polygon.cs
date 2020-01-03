@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents the accepted formats for updating a region's polygon.

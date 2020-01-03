@@ -1,4 +1,4 @@
-﻿namespace Decos.Fixi
+﻿namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a reference to a category by name.

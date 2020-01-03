@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents modifiable properties of a canned response.

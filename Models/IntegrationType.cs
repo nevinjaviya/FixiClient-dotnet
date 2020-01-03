@@ -1,4 +1,4 @@
-﻿namespace Decos.Fixi
+﻿namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Indicates the type of third party integration.

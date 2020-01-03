@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Contains data for <see cref="ConnectConfiguration"/> object

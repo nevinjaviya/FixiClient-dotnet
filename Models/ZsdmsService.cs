@@ -1,4 +1,4 @@
-﻿namespace Decos.Fixi
+﻿namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Contains the data for an <see cref="ZsdmsService"/> object.
