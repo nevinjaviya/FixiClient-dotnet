@@ -26,7 +26,7 @@ namespace Decos.Fixi
     /// A token to monitor for cancellation requests.
     /// </param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    [Get("/organizations?api-version=1.0")]
+    [Get("/organizations?api-version=2.0")]
     Task<ListPage<Organization>> FindAsync(
         int page = 1,
         int count = 20,
