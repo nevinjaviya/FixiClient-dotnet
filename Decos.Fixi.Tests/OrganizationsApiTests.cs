@@ -10,8 +10,6 @@ namespace Decos.Fixi.Tests
   [TestClass]
   public class OrganizationsApiTests : FixiClientTest
   {
-    private string RegionShortName => Parameter("region") ?? "decos";
-
     [TestMethod]
     public async Task FindReturnsResults()
     {
