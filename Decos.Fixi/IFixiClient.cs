@@ -46,5 +46,10 @@ namespace Decos.Fixi
     /// Gets a reference to the users API.
     /// </summary>
     IUsersApi Users { get; }
+
+    /// <summary>
+    /// Gets a reference to the canned responses API.
+    /// </summary>
+    ICannedResponsesApi CannedResponses { get; }
   }
 }

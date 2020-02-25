@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a polygon where the rings are encoded according to

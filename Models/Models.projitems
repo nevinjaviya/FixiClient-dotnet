@@ -10,8 +10,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Attachment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttachmentFixi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CannedResponseData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CannedResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConnectConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SubcategoryResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EncodedPolygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handler.cs" />
@@ -31,9 +40,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)RegionResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SortOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Status.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TeamData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Team.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Visibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZsdmsConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZsdmsService.cs" />
   </ItemGroup>
 </Project>

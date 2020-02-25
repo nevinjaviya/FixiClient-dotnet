@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Decos.Fixi.Http;
+using Decos.Fixi.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Decos.Fixi.Tests

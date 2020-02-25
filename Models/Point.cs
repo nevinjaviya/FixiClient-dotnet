@@ -2,7 +2,7 @@
 using System.Globalization;
 using static System.FormattableString;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a set of geographical coordinates.

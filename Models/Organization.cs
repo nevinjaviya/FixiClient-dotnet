@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents an organization using Fixi.
@@ -42,6 +42,21 @@ namespace Decos.Fixi
     public string EmailAddress { get; set; }
 
     /// <summary>
+    /// Type of the integration organization communicating.
+    /// </summary>
+    public IntegrationType IntegrationType { get; set; }
+
+    /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public string IntegrationConfiguration { get; set; }
+
+    /// <summary>
+    /// Gets or sets a ZSDMS configuration that is used to sync data with other applications.
+    /// </summary>
+    public ZsdmsConfiguration ZsdmsConfiguration { get; set; }
+
+    /// <summary>
     /// Gets or sets the name of the organization.
     /// </summary>
     public string Name { get; set; }
@@ -61,5 +76,17 @@ namespace Decos.Fixi
     /// organization should be public by default.
     /// </summary>
     public BooleanDefault DefaultVisibility { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value that describes whether the organization supports 
+    /// anonymous issue reports or not.
+    /// </summary>
+    public bool ToReportAnonymous { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value that describes whether atleast one field in issue 
+    /// handle screen is required while handling issue or not.
+    /// </summary>
+    public bool ToValidateIssueHandle { get; set; }
   }
 }

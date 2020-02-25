@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a reported issue.
@@ -13,7 +13,7 @@ namespace Decos.Fixi
     /// </summary>
     public Issue()
     {
-      Attachments = new HashSet<Attachment>();
+      Attachments = new HashSet<AttachmentFixi>();
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace Decos.Fixi
     /// <summary>
     /// Gets or sets a collection of files attached to the issue.
     /// </summary>
-    public ICollection<Attachment> Attachments { get; set; }
+    public ICollection<AttachmentFixi> Attachments { get; set; }
 
     /// <summary>
     /// Gets or sets the category for which the issue was reported, or a null

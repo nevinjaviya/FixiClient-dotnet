@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents an application using the Fixi API.

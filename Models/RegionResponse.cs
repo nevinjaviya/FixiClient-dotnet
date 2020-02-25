@@ -1,12 +1,17 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents a region in a response.
   /// </summary>
   public class RegionResponse
   {
+    /// <summary>
+    /// Gets or sets an connect configuration id of the organization that is used to connect with join
+    /// </summary>
+    public ConnectConfiguration ConnectConfiguration { get; set; }
+
     /// <summary>
     /// Gets or sets the point in time the region was created.
     /// </summary>
@@ -72,5 +77,10 @@ namespace Decos.Fixi
     /// Gets or sets the short name of the region.
     /// </summary>
     public string ShortName { get; set; }
+
+    /// <summary>
+    /// Gets or sets a ZSDMS configuration that is used to sync data with other applications.
+    /// </summary>
+    public ZsdmsConfiguration ZsdmsConfiguration { get; set; }
   }
 }

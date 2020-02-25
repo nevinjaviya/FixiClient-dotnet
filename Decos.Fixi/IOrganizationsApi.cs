@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Decos.Fixi.Models;
 using Refit;
 
 namespace Decos.Fixi

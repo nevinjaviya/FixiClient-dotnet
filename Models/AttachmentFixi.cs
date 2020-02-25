@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Decos.Fixi
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Represents an attachment to an issue.
   /// </summary>
-  public class Attachment
+  public class AttachmentFixi
   {
     /// <summary>
     /// Gets or sets name of the blob.

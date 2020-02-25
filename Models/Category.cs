@@ -1,7 +1,7 @@
-﻿namespace Decos.Fixi
+﻿namespace Decos.Fixi.Models
 {
   /// <summary>
-  /// Represents a category of issues.
+  /// Represents a category in the response.
   /// </summary>
   public class Category
   {
@@ -9,7 +9,7 @@
     /// Gets or sets the name of the category.
     /// </summary>
     public string Name { get; set; }
-    
+
     /// <summary>
     /// Gets or sets a short name that uniquely identifies the category within a region.
     /// </summary>
