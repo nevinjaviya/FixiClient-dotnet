@@ -65,6 +65,11 @@ namespace Decos.Fixi.Models
     public string Name { get; set; }
 
     /// <summary>
+    /// Gets or sets an display name for an region(municipality).
+    /// </summary>
+    public string DisplayName { get; set; }
+
+    /// <summary>
     /// Gets or sets the short name of the organization that owns the region, or
     /// a null reference if the region is not owned by a customer.
     /// </summary>
