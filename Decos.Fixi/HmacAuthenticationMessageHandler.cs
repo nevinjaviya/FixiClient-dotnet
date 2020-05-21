@@ -124,7 +124,7 @@ namespace Decos.Fixi
     private async Task<string> GetSignatureAsync(HttpRequestMessage request, string nonce, string timestamp)
     {
       var contentHash = await GetContentHashAsync(request.Content).ConfigureAwait(false);
-      var token = string.Concat(ApiKey, request.Method.Method, request.RequestUri.ToString(), nonce, timestamp, contentHash);
+      var token = string.Concat(ApiKey, request.Method.Method, request.RequestUri.AbsoluteUri, nonce, timestamp, contentHash);
       var tokenData = Encoding.UTF8.GetBytes(token);
       var tokenHash = hashAlgorithm.ComputeHash(tokenData);
       return Convert.ToBase64String(tokenHash);
