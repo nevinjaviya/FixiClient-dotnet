@@ -79,5 +79,10 @@ namespace Decos.Fixi.Models
     /// Gets or sets a polygon that represents the area covered by the region.
     /// </summary>
     public Polygon Polygon { get; set; }
+
+    /// <summary>
+    /// Time zone id of the organization
+    /// </summary>
+    public string TimeZoneId { get; set; }
   }
 }

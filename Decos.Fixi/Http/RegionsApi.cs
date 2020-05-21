@@ -31,7 +31,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the created region.</returns>
     public Task<RegionResponse> AddAsync(RegionData data, CancellationToken cancellationToken)
     {
-      return PostAsync<RegionData, RegionResponse>("/regions?api-version=2.0", data, cancellationToken);
+      return PostAsync<RegionData, RegionResponse>("/regions?api-version=1.0", data, cancellationToken);
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace Decos.Fixi.Http
     public Task<ListPage<RegionResponse>> AtLocationAsync(double latitude, double longitude, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { latitude, longitude, page, count };
-      return GetAsync<ListPage<RegionResponse>>("/regions/atlocation?api-version=2.0", args, cancellationToken);
+      return GetAsync<ListPage<RegionResponse>>("/regions/atlocation?api-version=1.0", args, cancellationToken);
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ namespace Decos.Fixi.Http
     public Task<ListPage<RegionResponse>> FindAsync(bool? all = null, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { all, page, count };
-      return GetAsync<ListPage<RegionResponse>>("/regions?api-version=2.0", args, cancellationToken);
+      return GetAsync<ListPage<RegionResponse>>("/regions?api-version=1.0", args, cancellationToken);
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ namespace Decos.Fixi.Http
     public Task<ListPage<RegionResponse>> FindAsync(string organization, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { page, count };
-      return GetAsync<ListPage<RegionResponse>>($"/organizations/{Uri.EscapeDataString(organization)}/regions?api-version=2.0", args, cancellationToken);
+      return GetAsync<ListPage<RegionResponse>>($"/organizations/{Uri.EscapeDataString(organization)}/regions?api-version=1.0", args, cancellationToken);
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the specified region.</returns>
     public Task<RegionResponse> GetAsync(string region, CancellationToken cancellationToken)
     {
-      return GetAsync<RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=2.0", cancellationToken);
+      return GetAsync<RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=1.0", cancellationToken);
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns an <see cref="EncodedPolygon"/> object.</returns>
     public Task<IEnumerable<EncodedPolygon>> GetEncodedGeometryAsync(string region, CancellationToken cancellationToken)
     {
-      return GetAsync<IEnumerable<EncodedPolygon>>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=encoded&api-version=2.0", cancellationToken);
+      return GetAsync<IEnumerable<EncodedPolygon>>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=encoded&api-version=1.0", cancellationToken);
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns a <see cref="RawPolygon"/> object.</returns>
     public Task<IEnumerable<RawPolygon>> GetRawGeometryAsync(string region, CancellationToken cancellationToken)
     {
-      return GetAsync<IEnumerable<RawPolygon>>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=raw&api-version=2.0", cancellationToken);
+      return GetAsync<IEnumerable<RawPolygon>>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=raw&api-version=1.0", cancellationToken);
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ namespace Decos.Fixi.Http
     /// </returns>
     public async Task<byte[]> GetWellKnownBinaryAsync(string region, CancellationToken cancellationToken)
     {
-      var base64 = await GetAsync<string>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=wellKnownBinary&api-version=2.0", cancellationToken).ConfigureAwait(false);
+      var base64 = await GetAsync<string>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=wellKnownBinary&api-version=1.0", cancellationToken).ConfigureAwait(false);
       return Convert.FromBase64String(base64);
     }
 
@@ -174,7 +174,7 @@ namespace Decos.Fixi.Http
     /// </returns>
     public Task<string> GetWellKnownTextAsync(string region, CancellationToken cancellationToken)
     {
-      return GetAsync<string>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=wellKnownText&api-version=2.0", cancellationToken);
+      return GetAsync<string>($"/regions/{Uri.EscapeDataString(region)}/geometry?format=wellKnownText&api-version=1.0", cancellationToken);
     }
 
     /// <summary>
@@ -188,7 +188,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the updated region.</returns>
     public Task<RegionResponse> UpdateAsync(string region, RegionData data, CancellationToken cancellationToken)
     {
-      return PatchAsync<RegionData, RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=2.0", data, cancellationToken);
+      return PatchAsync<RegionData, RegionResponse>($"/regions/{Uri.EscapeDataString(region)}?api-version=1.0", data, cancellationToken);
     }
   }
 }

@@ -29,7 +29,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the currently-logged in user.</returns>
     public Task<User> GetCurrentUserAsync(CancellationToken cancellationToken)
     {
-      return GetAsync<User>("/users/me?api-version=2.0", null, cancellationToken);
+      return GetAsync<User>("/users/me?api-version=1.0", null, cancellationToken);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace Decos.Fixi.Http
     /// <returns>A task that returns the updated user.</returns>
     public Task<User> UpdateCurrentUserAsync(UserData data, CancellationToken cancellationToken)
     {
-      return PostAsync<UserData, User>("/users/me?api-version=2.0", data, cancellationToken);
+      return PostAsync<UserData, User>("/users/me?api-version=1.0", data, cancellationToken);
     }
   }
 }

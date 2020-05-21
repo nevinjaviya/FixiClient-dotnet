@@ -88,5 +88,10 @@ namespace Decos.Fixi.Models
     /// handle screen is required while handling issue or not.
     /// </summary>
     public bool ToValidateIssueHandle { get; set; }
+
+    /// <summary>
+    /// Time zone id of the organization
+    /// </summary>
+    public string TimeZoneId { get; set; }
   }
 }

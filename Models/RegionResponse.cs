@@ -87,5 +87,10 @@ namespace Decos.Fixi.Models
     /// Gets or sets a ZSDMS configuration that is used to sync data with other applications.
     /// </summary>
     public ZsdmsConfiguration ZsdmsConfiguration { get; set; }
+
+    /// <summary>
+    /// Time zone id of the organization
+    /// </summary>
+    public string TimeZoneId { get; set; }
   }
 }

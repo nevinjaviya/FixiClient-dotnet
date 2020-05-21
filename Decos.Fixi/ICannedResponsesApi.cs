@@ -27,7 +27,7 @@ namespace Decos.Fixi
     /// <returns>
     /// A task that returns the list of canned responses.
     /// </returns>
-    [Get("/organization/{id}/cannedresponses?api-version=2.0")]
+    [Get("/organization/{id}/cannedresponses?api-version=1.0")]
     Task<IEnumerable<CannedResponse>> FindAsync(string id, string selectedCategory = null, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace Decos.Fixi
     /// <param name="name">The short name of the canned response.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a specified canned response.</returns>
-    [Get("/organization/{id}/cannedresponses/{name}?api-version=2.0")]
+    [Get("/organization/{id}/cannedresponses/{name}?api-version=1.0")]
     Task<CannedResponse> GetAsync(string id, string name, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace Decos.Fixi
     /// <param name="data">The canned response data.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a created canned response.</returns>
-    [Post("/organization/{id}/cannedresponses?api-version=2.0")]
+    [Post("/organization/{id}/cannedresponses?api-version=1.0")]
     Task<CannedResponse> AddAsync(string id, CannedResponseData data, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -58,7 +58,7 @@ namespace Decos.Fixi
     /// <param name="data">The modified data.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the updated canned response.</returns>
-    [Patch("/organization/{id}/cannedresponses/{name}?api-version=2.0")]
+    [Patch("/organization/{id}/cannedresponses/{name}?api-version=1.0")]
     Task<CannedResponse> UpdateAsync(string id, string name, CannedResponseData data, CancellationToken cancellationToken = default(CancellationToken));
   }
 }
