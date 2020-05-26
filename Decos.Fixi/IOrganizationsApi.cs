@@ -30,7 +30,7 @@ namespace Decos.Fixi
     /// <param name="id">The short name of the organization to find.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    [Get("/organizations/{id}?api-version=1.0")]
+    [Get("/organizations/{id}")]
     Task<Organization> FindByIdAsync(
         string id,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -41,7 +41,7 @@ namespace Decos.Fixi
     /// <param name="data">The organization data.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    [Post("/organizations?api-version=1.0")]
+    [Post("/organizations")]
     Task<Organization> PostAsync(
         Organization data,
         CancellationToken cancellationToken = default(CancellationToken));
@@ -53,7 +53,7 @@ namespace Decos.Fixi
     /// <param name="data">The modified organization data.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    [Patch("/organizations/{id}?api-version=1.0")]
+    [Patch("/organizations/{id}")]
     Task<Organization> UpdateAsync(
         string id,
         Organization data,

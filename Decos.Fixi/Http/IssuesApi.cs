@@ -106,7 +106,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { q, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion };
-      return PostToStreamAsync("/issues/exportTeam?api-version=1.0", args, destination, cancellationToken);
+      return PostToStreamAsync("/issues/exportTeam", args, destination, cancellationToken);
     }
 
     /// <summary>
@@ -167,7 +167,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion };
-      return PostToStreamAsync("/issues/export?api-version=1.0", args, destination, cancellationToken);
+      return PostToStreamAsync("/issues/export", args, destination, cancellationToken);
     }
 
     /// <summary>
@@ -234,7 +234,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { q, searchPrivateInfo, reportedBy, assignedTo, region, category, status, from, to, isManaged, hasRegion, page, count };
-      return GetAsync<ListPage<IssueListItem>>("/issues?api-version=1.0", args, cancellationToken);
+      return GetAsync<ListPage<IssueListItem>>("/issues", args, cancellationToken);
     }
 
     /// <summary>
@@ -337,7 +337,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { north, east, south, west, category, status, from, to, isManaged, hasRegion, page, count };
-      return GetAsync<ListPage<IssueMapListItem>>("/issues/map?api-version=1.0", args, cancellationToken);
+      return GetAsync<ListPage<IssueMapListItem>>("/issues/map", args, cancellationToken);
     }
 
     /// <summary>
@@ -413,7 +413,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { latitude, longitude, radius, q, searchPrivateInfo, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, sort, page, count };
-      return GetAsync<ListPage<IssueListItem>>("/issues/nearby?api-version=1.0", args, cancellationToken);
+      return GetAsync<ListPage<IssueListItem>>("/issues/nearby", args, cancellationToken);
     }
 
     /// <summary>
@@ -477,7 +477,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default(CancellationToken))
     {
       var args = new { q, reportedBy, assignedTo, category, status, from, to, isManaged, hasRegion, page, count };
-      return GetAsync<ListPage<IssueListItem>>("/issues/team?api-version=1.0", args, cancellationToken);
+      return GetAsync<ListPage<IssueListItem>>("/issues/team", args, cancellationToken);
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ namespace Decos.Fixi
     /// </param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a single page of teams.</returns>
-    [Get("/organizations/{organization}/teams?api-version=1.0")]
+    [Get("/organizations/{organization}/teams")]
     Task<ListPage<Team>> FindAsync(string organization, int page = 1, int count = 20, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
@@ -49,7 +49,7 @@ namespace Decos.Fixi
     /// <param name="id">The short name of the team.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a specified team.</returns>
-    [Get("/organizations/{organization}/teams/{id}?api-version=1.0")]
+    [Get("/organizations/{organization}/teams/{id}")]
     Task<Team> GetAsync(string organization, string id, CancellationToken cancellationToken = default(CancellationToken));
 
     /// <summary>
