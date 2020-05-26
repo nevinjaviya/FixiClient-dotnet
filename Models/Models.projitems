@@ -9,6 +9,10 @@
     <Import_RootNamespace>Decos.Fixi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommentDto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserRole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommentsSortMethod.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Application.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AttachmentFixi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BooleanDefault.cs" />

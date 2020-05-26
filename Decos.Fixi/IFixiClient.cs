@@ -48,6 +48,11 @@ namespace Decos.Fixi
     IUsersApi Users { get; }
 
     /// <summary>
+    /// Gets a reference to the comments API.
+    /// </summary>
+    ICommentsApi Comments { get; }
+
+    /// <summary>
     /// Gets a reference to the canned responses API.
     /// </summary>
     ICannedResponsesApi CannedResponses { get; }
