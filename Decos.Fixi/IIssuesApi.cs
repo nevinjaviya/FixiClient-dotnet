@@ -16,67 +16,37 @@ namespace Decos.Fixi
     /// Creates a new issue.
     /// </summary>
     /// <param name="issueData">The issue data.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the created issue.</returns>
     Task<Issue> CreateAsync(
         IssueData issueData,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes the issue with the specified ID.
     /// </summary>
     /// <param name="id">The issue ID of the issue the delete.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="id"/> is <c>null</c>.
-    /// </exception>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     Task DeleteIssueAsync(
         string id,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Generates an Excel overview of a list of issues assigned to the logged-in
-    /// user's teams and writes the result to the specified stream.
+    /// Generates an Excel overview of a list of issues assigned to the logged-in user's teams and writes the result to the specified stream.
     /// </summary>
-    /// <param name="destination">
-    /// The stream to which the Excel worksheet will be written.
-    /// </param>
+    /// <param name="destination">The stream to which the Excel worksheet will be written.</param>
     /// <param name="q">An optional search string.</param>
-    /// <param name="reportedBy">
-    /// Optionally filters the results on reporter email address.
-    /// </param>
-    /// <param name="assignedTo">
-    /// Optionally filters the results on handler email address or team short name.
-    /// </param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be included.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be included.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be included.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be included.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task ExportTeamIssuesToStreamAsync(
         Stream destination,
@@ -89,50 +59,23 @@ namespace Decos.Fixi
         DateTimeOffset? to = null,
         bool? isManaged = null,
         bool? hasRegion = null,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Generates an Excel overview of a list of issues and writes the result to
-    /// the specified stream.
+    /// Generates an Excel overview of a list of issues and writes the result to the specified stream.
     /// </summary>
-    /// <param name="destination">
-    /// The stream to which the Excel worksheet will be written.
-    /// </param>
+    /// <param name="destination">The stream to which the Excel worksheet will be written.</param>
     /// <param name="q">An optional search string.</param>
-    /// <param name="searchPrivateInfo">
-    /// <c>true</c> to search fields that may contain private information in
-    /// addition to public information, or <c>false</c> to search only public information.
-    /// </param>
-    /// <param name="reportedBy">
-    /// Optionally filters the results on reporter email address.
-    /// </param>
-    /// <param name="assignedTo">
-    /// Optionally filters the results on handler email address or team short name.
-    /// </param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be included.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be included.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be included.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be included.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     Task ExportToStreamAsync(
         Stream destination,
@@ -146,58 +89,25 @@ namespace Decos.Fixi
         DateTimeOffset? to = null,
         bool? isManaged = null,
         bool? hasRegion = null,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns a list of issues in descending order according to creation date.
     /// </summary>
     /// <param name="q">An optional search string.</param>
-    /// <param name="searchPrivateInfo">
-    /// <c>true</c> to search fields that may contain private information in
-    /// addition to public information, or <c>false</c> to search only public information.
-    /// </param>
-    /// <param name="reportedBy">
-    /// Optionally filters the results on reporter email address.
-    /// </param>
-    /// <param name="assignedTo">
-    /// Optionally filters the results on handler email address or team short name.
-    /// </param>
-    /// <param name="region">
-    /// Optionally filters the results on region short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be returned.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be returned.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
-    /// <param name="page">
-    /// An optional non-zero positive integer indicating the number of the page
-    /// to retrieve.
-    /// </param>
-    /// <param name="count">
-    /// An optional non-zero positive integer indicating the number of results to
-    /// return per page.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="region">Optionally filters the results on region short name. This parameter can be specified multiple times.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be returned.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be returned.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a single page of issues.</returns>
     Task<ListPage<IssueListItem>> FindAsync(
         string q = null,
@@ -212,47 +122,32 @@ namespace Decos.Fixi
         bool? isManaged = null,
         bool? hasRegion = null,
         int page = 1, int count = 20,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns the issue with the specified ID.
     /// </summary>
     /// <param name="id">The public issue ID.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the issue with the specified ID.</returns>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="id"/> is <c>null</c>.
-    /// </exception>
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
     Task<Issue> GetAsync(
         string id,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns a list of the IDs of deleted issues.
     /// </summary>
-    /// <param name="since">
-    /// If specified, only issues deleted since this date/time will be included
-    /// in the search.
-    /// </param>
-    /// <param name="page">
-    /// An optional non-zero positive integer indicating the number of the page
-    /// to retrieve.
-    /// </param>
-    /// <param name="count">
-    /// An optional non-zero positive integer indicating the number of results to
-    /// return per page.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="since">If specified, only issues deleted since this date/time will be included in the search.</param>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a list of the IDs of deleted issues.</returns>
     Task<IEnumerable<string>> GetDeletedIssueIdsAsync(
         DateTimeOffset? since = null,
         int page = 1,
         int count = 1000,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns a list of issues within the specified bounds in descending order
@@ -262,38 +157,15 @@ namespace Decos.Fixi
     /// <param name="east">The longitude coordinate of the east border.</param>
     /// <param name="south">The latitude coordinate of the south border.</param>
     /// <param name="west">The longitude coordinate of the west border.</param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be returned.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be returned.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
-    /// <param name="page">
-    /// An optional non-zero positive integer indicating the number of the page
-    /// to retrieve.
-    /// </param>
-    /// <param name="count">
-    /// An optional non-zero positive integer indicating the number of results to
-    /// return per page.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be returned.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be returned.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns a single page of issues.</returns>
     Task<ListPage<IssueMapListItem>> GetMapIssuesAsync(
         double north,
@@ -308,7 +180,7 @@ namespace Decos.Fixi
         bool? hasRegion = null,
         int page = 1,
         int count = 200,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns a list of issues near the specified location.
@@ -317,52 +189,20 @@ namespace Decos.Fixi
     /// <param name="longitude">The longitude coordinate.</param>
     /// <param name="radius">The radius in meters.</param>
     /// <param name="q">An optional search string.</param>
-    /// <param name="searchPrivateInfo">
-    /// <c>true</c> to search fields that may contain private information in
-    /// addition to public information, or <c>false</c> to search only public information.
-    /// </param>
-    /// <param name="reportedBy">
-    /// Optionally filters the results on reporter email address.
-    /// </param>
-    /// <param name="assignedTo">
-    /// Optionally filters the results on handler email address or team short name.
-    /// </param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be returned.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be returned.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
+    /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be returned.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be returned.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
     /// <param name="sort">The sorting order.</param>
-    /// <param name="page">
-    /// An optional non-zero positive integer indicating the number of the page
-    /// to retrieve.
-    /// </param>
-    /// <param name="count">
-    /// An optional non-zero positive integer indicating the number of results to
-    /// return per page.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns a list of issues near the specified location.
-    /// </returns>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns a list of issues near the specified location.</returns>
     Task<ListPage<IssueListItem>> GetNearbyIssuesAsync(
         double latitude,
         double longitude,
@@ -380,54 +220,24 @@ namespace Decos.Fixi
         SortOrder sort = SortOrder.Default,
         int page = 1,
         int count = 20,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Returns a list of issues assigned to the logged-in user's teams.
     /// </summary>
     /// <param name="q">An optional search string.</param>
-    /// <param name="reportedBy">
-    /// Optionally filters the results on reporter email address.
-    /// </param>
-    /// <param name="assignedTo">
-    /// Optionally filters the results on handler email address or team short name.
-    /// </param>
-    /// <param name="category">
-    /// Optionally filters the results on category short name. This parameter can
-    /// be specified multiple times.
-    /// </param>
-    /// <param name="status">
-    /// Optionally filters the results on status. This parameter can be specified
-    /// multiple times.
-    /// </param>
-    /// <param name="from">
-    /// If specified, only issues created on or after this date will be returned.
-    /// </param>
-    /// <param name="to">
-    /// If specified, only issues created on or before this date will be returned.
-    /// </param>
-    /// <param name="isManaged">
-    /// If specified, filters issues based on whether the associated region is
-    /// managed by an organization.
-    /// </param>
-    /// <param name="hasRegion">
-    /// If specified, filters issues based on whether a region is associated.
-    /// </param>
-    /// <param name="page">
-    /// An optional non-zero positive integer indicating the number of the page
-    /// to retrieve.
-    /// </param>
-    /// <param name="count">
-    /// An optional non-zero positive integer indicating the number of results to
-    /// return per page.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns a list of issues assigned to any of the logged-in
-    /// user's teams.
-    /// </returns>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be returned.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be returned.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns a list of issues assigned to any of the logged-in user's teams.</returns>
     Task<ListPage<IssueListItem>> GetTeamIssuesAsync(
         string q = null,
         string reportedBy = null,
@@ -440,23 +250,26 @@ namespace Decos.Fixi
         bool? hasRegion = null,
         int page = 1,
         int count = 20,
-        CancellationToken cancellationToken = default(CancellationToken));
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates an existing issue.
     /// </summary>
     /// <param name="id">The public issue ID.</param>
     /// <param name="issueData">The modified issue data.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the updated issue.</returns>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="id"/> is <c>null</c>.
-    /// </exception>
-    Task<Issue> UpdateAsync(
-        string id,
-        IssueData issueData,
-        CancellationToken cancellationToken = default(CancellationToken));
+    /// <exception cref="ArgumentNullException"><paramref name="id"/> is <c>null</c>.</exception>
+    Task<Issue> UpdateAsync(string id, IssueData issueData, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Deletes the issue with the specified ID.
+    /// </summary>
+    /// <param name="ids">The issue ID of the issue the delete.</param>
+    /// <param name="isSoftDelete">To delete softly or permanently</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="ids"/> is <c>null</c>.</exception>
+    Task DeleteIssuesAsync(string[] ids, bool isSoftDelete = true, CancellationToken cancellationToken = default);
   }
 }

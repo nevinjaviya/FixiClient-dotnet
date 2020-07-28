@@ -21,9 +21,7 @@ namespace Decos.Fixi.Http
     /// Initializes a new instance of the <see cref="RestApi"/> class that uses
     /// the specified <see cref="System.Net.Http.HttpClient"/>.
     /// </summary>
-    /// <param name="httpClient">
-    /// An <see cref="System.Net.Http.HttpClient"/> for sending requests.
-    /// </param>
+    /// <param name="httpClient">An <see cref="System.Net.Http.HttpClient"/> for sending requests.</param>
     protected RestApi(HttpClient httpClient)
     {
       if (httpClient == null)
@@ -47,17 +45,24 @@ namespace Decos.Fixi.Http
     /// Sends a DELETE request to the specified URI.
     /// </summary>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected Task DeleteAsync(string requestUri, CancellationToken cancellationToken)
     {
       return SendAsync(HttpMethod.Delete, requestUri, null, cancellationToken);
+    }
+
+    /// <summary>
+    /// Delete multiple entities
+    /// </summary>
+    /// <param name="requestUri">The URI to send a request to</param>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    protected Task DeleteMultipleAsync(string requestUri, object parameters, CancellationToken cancellationToken)
+    {
+      return SendAsync(HttpMethod.Delete, requestUri, parameters, cancellationToken);
     }
 
     /// <summary>
@@ -65,40 +70,25 @@ namespace Decos.Fixi.Http
     /// </summary>
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected Task<TResult> GetAsync<TResult>(string requestUri, CancellationToken cancellationToken)
     {
       return GetAsync<TResult>(requestUri, null, cancellationToken);
     }
 
     /// <summary>
-    /// Sends a GET request to the specified URI using an object to provide
-    /// request parameters.
+    /// Sends a GET request to the specified URI using an object to provide request parameters.
     /// </summary>
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected Task<TResult> GetAsync<TResult>(string requestUri, object parameters, CancellationToken cancellationToken)
     {
       return SendAsync<TResult>(HttpMethod.Get, requestUri, parameters, cancellationToken);
@@ -111,16 +101,10 @@ namespace Decos.Fixi.Http
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="requestUri">The URI to send a request to.</param>
     /// <param name="value">The value to send in the request.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected Task<TResult> PostAsync<T, TResult>(string requestUri, T value, CancellationToken cancellationToken)
     {
       return SendAsync<T, TResult>(HttpMethod.Post, requestUri, null, value, cancellationToken);
@@ -133,16 +117,10 @@ namespace Decos.Fixi.Http
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="requestUri">The URI to send a request to.</param>
     /// <param name="value">The value to send in the request.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected Task<TResult> PatchAsync<T, TResult>(string requestUri, T value, CancellationToken cancellationToken)
     {
       return SendAsync<T, TResult>(Patch, requestUri, null, value, cancellationToken);
@@ -153,15 +131,9 @@ namespace Decos.Fixi.Http
     /// request parameters and writes the response body to the specified stream.
     /// </summary>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
-    /// <param name="destination">
-    /// The stream that the content of the response will be written to.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
+    /// <param name="destination">The stream that the content of the response will be written to.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     protected async Task PostToStreamAsync(string requestUri, object parameters, Stream destination, CancellationToken cancellationToken)
     {
@@ -178,12 +150,8 @@ namespace Decos.Fixi.Http
     /// </summary>
     /// <param name="httpMethod">The HTTP method.</param>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the HTTP response message.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
     protected async Task<HttpResponseMessage> SendAsync(HttpMethod httpMethod, string requestUri, object parameters, CancellationToken cancellationToken)
@@ -199,19 +167,14 @@ namespace Decos.Fixi.Http
     }
 
     /// <summary>
-    /// Sends an HTTP request with the specified content to the specified URI
-    /// using an object to provide request parameters.
+    /// Sends an HTTP request with the specified content to the specified URI using an object to provide request parameters.
     /// </summary>
     /// <typeparam name="T">The type of object to send.</typeparam>
     /// <param name="httpMethod">The HTTP method.</param>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
     /// <param name="value">The value to send in the request.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task that returns the HTTP response message.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
     protected async Task<HttpResponseMessage> SendAsync<T>(HttpMethod httpMethod, string requestUri, object parameters, T value, CancellationToken cancellationToken)
@@ -236,19 +199,11 @@ namespace Decos.Fixi.Http
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="httpMethod">The HTTP method.</param>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
-    /// <exception cref="InvalidResponseFormatException">
-    /// An error occurred during deserialization of the response.
-    /// </exception>
+    /// <exception cref="InvalidResponseFormatException">An error occurred during deserialization of the response.</exception>
     protected async Task<TResult> SendAsync<TResult>(HttpMethod httpMethod, string requestUri, object parameters, CancellationToken cancellationToken)
     {
       try
@@ -265,23 +220,16 @@ namespace Decos.Fixi.Http
     }
 
     /// <summary>
-    /// Sends an HTTP request with the specified content to the specified URI
-    /// using an object to provide request parameters, and deserializes the response.
+    /// Sends an HTTP request with the specified content to the specified URI using an object to provide request parameters, and deserializes the response.
     /// </summary>
     /// <typeparam name="T">The type of object to send.</typeparam>
     /// <typeparam name="TResult">The type of object to read.</typeparam>
     /// <param name="httpMethod">The HTTP method.</param>
     /// <param name="requestUri">The URI to send a request to.</param>
-    /// <param name="parameters">
-    /// An object whose public properties are sent as query string parameters.
-    /// </param>
+    /// <param name="parameters">An object whose public properties are sent as query string parameters.</param>
     /// <param name="value">The value to send in the request.</param>
-    /// <param name="cancellationToken">
-    /// A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    /// A task that returns an object instance of the specified type.
-    /// </returns>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns an object instance of the specified type.</returns>
     /// <exception cref="ApiException">An error occurred the request.</exception>
     protected async Task<TResult> SendAsync<T, TResult>(HttpMethod httpMethod, string requestUri, object parameters, T value, CancellationToken cancellationToken)
     {
