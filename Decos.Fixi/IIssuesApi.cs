@@ -125,6 +125,39 @@ namespace Decos.Fixi
         CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Returns a lite list of issues in descending order according to creation date.
+    /// </summary>
+    /// <param name="q">An optional search string.</param>
+    /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
+    /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
+    /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
+    /// <param name="region">Optionally filters the results on region short name. This parameter can be specified multiple times.</param>
+    /// <param name="category">Optionally filters the results on category short name. This parameter can be specified multiple times.</param>
+    /// <param name="status">Optionally filters the results on status. This parameter can be specified multiple times.</param>
+    /// <param name="from">If specified, only issues created on or after this date will be returned.</param>
+    /// <param name="to">If specified, only issues created on or before this date will be returned.</param>
+    /// <param name="isManaged">If specified, filters issues based on whether the associated region is managed by an organization.</param>
+    /// <param name="hasRegion">If specified, filters issues based on whether a region is associated.</param>
+    /// <param name="page">An optional non-zero positive integer indicating the number of the page to retrieve.</param>
+    /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
+    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+    /// <returns>A task that returns a single page of issues.</returns>
+    Task<ListPage<IssueListItem>> FindLiteListAsync(
+        string q = null,
+        bool searchPrivateInfo = false,
+        string reportedBy = null,
+        string assignedTo = null,
+        string[] region = null,
+        string[] category = null,
+        Status[] status = null,
+        DateTimeOffset? from = null,
+        DateTimeOffset? to = null,
+        bool? isManaged = null,
+        bool? hasRegion = null,
+        int page = 1, int count = 20,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Returns the issue with the specified ID.
     /// </summary>
     /// <param name="id">The public issue ID.</param>
