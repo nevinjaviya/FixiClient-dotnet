@@ -188,7 +188,7 @@ namespace Decos.Fixi.Http
         CancellationToken cancellationToken = default)
     {
       var args = new { q, searchPrivateInfo, reportedBy, assignedTo, region, category, status, from, to, isManaged, hasRegion, page, count };
-      return GetAsync<ListPage<IssueListItem>>("/issues/list", args, cancellationToken);
+      return GetAsync<ListPage<IssueListItem>>("/issues/listAdmin", args, cancellationToken);
     }
 
     /// <summary>

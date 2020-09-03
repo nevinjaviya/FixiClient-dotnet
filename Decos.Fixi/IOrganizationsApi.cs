@@ -18,7 +18,7 @@ namespace Decos.Fixi
     /// <param name="count">An optional non-zero positive integer indicating the number of results to return per page.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    [Get("/organizations/list")]
+    [Get("/organizations/listAdmin")]
     Task<ListPage<Organization>> FindAsync(
         int page = 1,
         int count = 20,
