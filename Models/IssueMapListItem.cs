@@ -20,6 +20,11 @@ namespace Decos.Fixi.Models
     public string ID { get; set; }
 
     /// <summary>
+    /// Gets or sets the public identifier of the issue.
+    /// </summary>
+    public string PublicID { get; set; }
+
+    /// <summary>
     /// Gets or sets the latitude coordinate of the issue.
     /// </summary>
     public double? Latitude { get; set; }

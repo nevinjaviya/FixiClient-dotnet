@@ -59,6 +59,11 @@ namespace Decos.Fixi.Models
     public string ID { get; set; }
 
     /// <summary>
+    /// Gets or sets the public identifier of the issue.
+    /// </summary>
+    public string PublicID { get; set; }
+
+    /// <summary>
     /// Gets or sets the name of the region in which the issue was reported, or
     /// null if the issue was reported in an area without any registered regions.
     /// </summary>

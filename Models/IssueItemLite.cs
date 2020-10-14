@@ -20,6 +20,11 @@ namespace Decos.Fixi
     public string ID { get; set; }
 
     /// <summary>
+    /// Gets or sets the public identifier of the issue.
+    /// </summary>
+    public string PublicID { get; set; }
+
+    /// <summary>
     /// Gets the point in time when the issue has been created, or a null reference if the entity has not been committed to the database yet.
     /// </summary>
     public DateTimeOffset? Created { get; set; }

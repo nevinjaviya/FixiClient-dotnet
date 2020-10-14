@@ -96,6 +96,11 @@ namespace Decos.Fixi.Models
     public string ID { get; set; }
 
     /// <summary>
+    /// Gets or sets the public identifier of the issue.
+    /// </summary>
+    public string PublicID { get; set; }
+
+    /// <summary>
     /// Gets or sets the location of the issue.
     /// </summary>
     public Point Location { get; set; }

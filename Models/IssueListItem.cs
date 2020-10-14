@@ -20,6 +20,11 @@ namespace Decos.Fixi.Models
     public string ID { get; set; }
 
     /// <summary>
+    /// Gets or sets the public identifier of the issue.
+    /// </summary>
+    public string PublicID { get; set; }
+
+    /// <summary>
     /// Gets or sets the number of files attached to the issue.
     /// </summary>
     public int AttachmentCount { get; set; }
