@@ -128,7 +128,6 @@ namespace Decos.Fixi.Tests
       var regionName = Parameter("region") ?? "decos";
       var categoryName = Parameter("category");
 
-
       var newIssue = await FixiClient.Issues.CreateAsync(new IssueData
       {
         Description = "Issue created for Fixi Client test " + nameof(CreatedIssueCanBeFoundUpdatedAndDeleted) + ". This issue will be updated and deleted shortly. If the issue is not deleted shortly after creation, the test will have failed.",
@@ -155,7 +154,7 @@ namespace Decos.Fixi.Tests
         Source = source
       });
       Assert.AreEqual(source, updatedIssue.Source);
-      Assert.AreEqual(DateTime.Today, updatedIssue.Modified.Value.Date);
+      Assert.AreEqual(newIssue.PublicID, updatedIssue.PublicID);
 
       await FixiClient.Issues.DeleteIssueAsync(updatedIssue.ID);
     }
