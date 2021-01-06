@@ -68,8 +68,7 @@ namespace Decos.Fixi.Tests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ApiException), AllowDerivedTypes = true)]
-    public async Task TeamIssuesFailsWhenNotLoggedIn()
+    public async Task TeamIssuesShouldReturnWhenNotLoggedIn()
     {
       var issues = await FixiClient.Issues.GetTeamIssuesAsync();
     }
