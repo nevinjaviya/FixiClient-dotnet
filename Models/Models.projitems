@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CommentDto.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IssueItemLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Token.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserRole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommentListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CommentsSortMethod.cs" />

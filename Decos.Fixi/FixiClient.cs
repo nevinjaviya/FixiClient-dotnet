@@ -30,12 +30,13 @@ namespace Decos.Fixi
     /// <param name="apiKey">The application key.</param>
     /// <param name="apiSecret">The application secret key.</param>
     /// <param name="baseAddress">The base address of the Fixi APIs.</param>
-    public FixiClient(string apiKey, string apiSecret, Uri baseAddress)
+    /// <param name="customerId">Customer Id</param>
+    public FixiClient(string apiKey, string apiSecret, Uri baseAddress, string customerId = null)
     {
       ApiKey = apiKey;
       this.apiSecret = apiSecret;
       BaseAddress = baseAddress;
-
+      CustomerId = customerId;
       httpClient = new Lazy<HttpClient>(CreateHttpClient);
       attachmentsApi = new Lazy<IAttachmentsApi>(CreateApiInstance<IAttachmentsApi>);
       teamsApi = new Lazy<ITeamsApi>(CreateApiInstance<ITeamsApi>);
@@ -62,6 +63,11 @@ namespace Decos.Fixi
     /// Gets the base address of the Fixi APIs.
     /// </summary>
     public Uri BaseAddress { get; }
+
+    /// <summary>
+    /// Customer Id
+    /// </summary>
+    public string CustomerId { get; }
 
     /// <summary>
     /// Gets a reference to the categories API.
@@ -151,7 +157,7 @@ namespace Decos.Fixi
     protected virtual HttpClient CreateHttpClient()
     {
       var defaultHandler = new HttpClientHandler();
-      var authenticationHandler = new HmacAuthenticationMessageHandler(ApiKey, apiSecret, defaultHandler);
+      var authenticationHandler = new OAuth2AuthenticationMessageHandler(ApiKey, apiSecret, defaultHandler, CustomerId);
       return new HttpClient(authenticationHandler)
       {
         BaseAddress = BaseAddress
