@@ -39,6 +39,7 @@ namespace Decos.Fixi
     /// <param name="customerId"></param>
     public OAuth2AuthenticationMessageHandler(string key, string secret, HttpMessageHandler innerHandler, string customerId = null) : base(innerHandler)
     {
+      BearerToken = $"{BearerToken}-{key}";
       ApiKey = key;
       Secret = secret;
       CustomerId = customerId;
