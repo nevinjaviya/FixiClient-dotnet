@@ -17,7 +17,7 @@ namespace Decos.Fixi
   public class OAuth2AuthenticationMessageHandler : DelegatingHandler
   {
     private const string BearerAuthenticationScheme = "Bearer";
-    private const string BearerToken = "BearerToken";
+    private string BearerToken = "BearerToken";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuth2AuthenticationMessageHandler"/> class with the specified key and secret.
@@ -26,6 +26,7 @@ namespace Decos.Fixi
     /// <param name="secret">The API client application secret key.</param>
     public OAuth2AuthenticationMessageHandler(string key, string secret)
     {
+      BearerToken = $"{BearerToken}-{key}";
       ApiKey = key;
     }
 

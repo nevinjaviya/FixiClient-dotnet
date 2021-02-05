@@ -1,4 +1,6 @@
-﻿namespace Decos.Fixi.Models
+﻿using System.Collections.Generic;
+
+namespace Decos.Fixi.Models
 {
   /// <summary>
   /// Contains the data for an <see cref="ZsdmsConfiguration"/> object.
@@ -23,6 +25,11 @@
     ///  Gets or sets the BeantwoordVraag service details.
     /// </summary>
     public ZsdmsService BeantwoordVraag { get; set; }
+
+    /// <summary>
+    ///  Gets or sets the BeantwoordVraagZSDMS service details.
+    /// </summary>
+    public ZsdmsService BeantwoordVraagZsdms { get; set; }
 
     /// <summary>
     /// Gets or sets the receiver application to use when syncing using ZSDMS.
@@ -53,5 +60,10 @@
     /// Gets or sets the case type description to use when syncing using ZSDMS.
     /// </summary>
     public string CaseTypeDescription { get; set; }
+
+    /// <summary>
+    /// Gets or sets the status map to use when syncing using ZSDMS.
+    /// </summary>
+    public Dictionary<Status, string> StatusMapping { get; set; }
   }
 }
