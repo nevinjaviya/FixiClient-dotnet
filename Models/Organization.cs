@@ -90,6 +90,11 @@ namespace Decos.Fixi.Models
     public bool ToValidateIssueHandle { get; set; }
 
     /// <summary>
+    /// Represents a specialized data transfer object of organization's extra settings.
+    /// </summary>
+    public OrganizationExtraSettings Settings { get; set; }
+
+    /// <summary>
     /// Time zone id of the organization
     /// </summary>
     public string TimeZoneId { get; set; }
