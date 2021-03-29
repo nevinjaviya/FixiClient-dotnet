@@ -99,17 +99,17 @@ namespace Decos.Fixi.Tests
       }
     }
 
-    //[TestMethod]
-    //[ExpectedException(typeof(ApiException), AllowDerivedTypes = true)]
-    //public async Task ExportTeamIssuesFailsWhenNotLoggedIn()
-    //{
-    //  using (var stream = new MemoryStream())
-    //  {
-    //    await FixiClient.Issues.ExportTeamIssuesToStreamAsync(stream);
+    [TestMethod]
+    [ExpectedException(typeof(ApiException), AllowDerivedTypes = true)]
+    public async Task ExportTeamIssuesFailsWhenNotLoggedIn()
+    {
+      using (var stream = new MemoryStream())
+      {
+        await FixiClient.Issues.ExportTeamIssuesToStreamAsync(stream);
 
-    //    Assert.Fail();
-    //  }
-    //}
+        Assert.Fail();
+      }
+    }
 
     [TestMethod]
     [ExpectedException(typeof(ApiException))]
