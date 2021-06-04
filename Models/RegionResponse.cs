@@ -92,5 +92,10 @@ namespace Decos.Fixi.Models
     /// Time zone id of the organization
     /// </summary>
     public string TimeZoneId { get; set; }
+    
+    /// <summary>
+    /// Gets or sets the Id of the ImageAnalysis being used.
+    /// </summary>
+    public Guid? ImageAnalysisID { get; set; }
   }
 }
