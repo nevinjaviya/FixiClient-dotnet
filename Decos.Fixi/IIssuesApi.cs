@@ -66,6 +66,13 @@ namespace Decos.Fixi
     /// </summary>
     /// <param name="destination">The stream to which the Excel worksheet will be written.</param>
     /// <param name="q">An optional search string.</param>
+    /// <param name="id">An optional Fixi ID. </param>
+    /// <param name="description">Issue description (optional)</param>
+    /// <param name="organization">Organization short name (optional)</param>
+    /// <param name="address">Address (optional)</param>
+    /// <param name="reporterName">Issue reporter name (optional)</param>
+    /// <param name="reporterEmail">Issue reporter email address (optional)</param>
+    /// <param name="createdDate">Issue created date (optional)</param>
     /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
     /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
     /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
@@ -80,6 +87,13 @@ namespace Decos.Fixi
     Task ExportToStreamAsync(
         Stream destination,
         string q = null,
+        string id = null,
+        string description = null,
+        string organization = null,
+        string address = null,
+        string reporterName = null,
+        string reporterEmail = null,
+        DateTimeOffset? createdDate = null,
         bool searchPrivateInfo = false,
         string reportedBy = null,
         string assignedTo = null,
@@ -128,6 +142,13 @@ namespace Decos.Fixi
     /// Returns a lite list of issues in descending order according to creation date.
     /// </summary>
     /// <param name="q">An optional search string.</param>
+    /// <param name="id">An optional Fixi ID. </param>
+    /// <param name="description">Issue description (optional)</param>
+    /// <param name="organization">Organization short name (optional)</param>
+    /// <param name="address">Address (optional)</param>
+    /// <param name="reporterName">Issue reporter name (optional)</param>
+    /// <param name="reporterEmail">Issue reporter email address (optional)</param>
+    /// <param name="createdDate">Issue created date (optional)</param>
     /// <param name="searchPrivateInfo"><c>true</c> to search fields that may contain private information in addition to public information, or <c>false</c> to search only public information.</param>
     /// <param name="reportedBy">Optionally filters the results on reporter email address.</param>
     /// <param name="assignedTo">Optionally filters the results on handler email address or team short name.</param>
@@ -144,6 +165,13 @@ namespace Decos.Fixi
     /// <returns>A task that returns a single page of issues.</returns>
     Task<ListPage<IssueListItem>> FindLiteListAsync(
         string q = null,
+        string id = null,
+        string description = null,
+        string organization = null,
+        string address = null,
+        string reporterName = null,
+        string reporterEmail = null,
+        DateTimeOffset? createdDate = null,
         bool searchPrivateInfo = false,
         string reportedBy = null,
         string assignedTo = null,
