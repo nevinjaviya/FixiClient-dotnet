@@ -18,12 +18,6 @@ namespace Decos.Fixi.Models
     InProgress = 1,
 
     /// <summary>
-    /// The issue has been solved.
-    /// </summary>
-    [Obsolete("The status " + nameof(Handled) + " fulfills the same purpose and should be used instead.")]
-    Solved = 2,
-
-    /// <summary>
     /// The issue has been closed.
     /// </summary>
     Denied = 3,
