@@ -32,6 +32,13 @@
     public int? ServiceTarget { get; set; }
 
     /// <summary>
+    /// Gets or sets the number of business days in which issues in this category
+    /// should have atleast one reaction from handler/tic/admin user of organization,
+    /// or <c>null</c> if there is no service target for comment for this category.
+    /// </summary>
+    public int? CommentServiceTarget { get; set; }
+
+    /// <summary>
     /// Gets a value that indicates whether issues reported in this category
     /// should be public by default.
     /// </summary>
@@ -42,5 +49,15 @@
     /// issues with this category.
     /// </summary>
     public string DefaultTeam { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value that is type of external integration.
+    /// </summary>
+    public string Integration { get; set; }
+
+    /// <summary>
+    /// Get or set the multiple language translations for category.
+    /// </summary>
+    public string Translations { get; set; }
   }
 }
