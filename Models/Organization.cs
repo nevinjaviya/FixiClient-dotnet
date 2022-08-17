@@ -72,6 +72,11 @@ namespace Decos.Fixi.Models
     public string WebsiteAddress { get; set; }
 
     /// <summary>
+    /// Gets or sets the email domains of the organization (',' seperated).
+    /// </summary>
+    public string EmailDomains { get; set; }
+
+    /// <summary>
     /// Gets or sets a value that indicates whether issues reported for this
     /// organization should be public by default.
     /// </summary>
