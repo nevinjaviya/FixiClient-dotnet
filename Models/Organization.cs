@@ -42,6 +42,11 @@ namespace Decos.Fixi.Models
     public string EmailAddress { get; set; }
 
     /// <summary>
+    ///  Gets or sets a value that describes whether the organization allows public comments by citizen
+    /// </summary>
+    public bool AllowCitizenPublicComment { get; set; }
+
+    /// <summary>
     /// Type of the integration organization communicating.
     /// </summary>
     public IntegrationType IntegrationType { get; set; }
